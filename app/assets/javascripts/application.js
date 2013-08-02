@@ -11,5 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require handlebars
+//= require ember
+//= require ember-data
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap
+//= require app

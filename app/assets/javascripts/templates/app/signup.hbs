@@ -1,0 +1,59 @@
+<h1>Registro</h1>
+
+<form {{action createUser on="submit"}}>
+  <section class="sign-up-form">
+    <section class="left-column">
+      <div>
+        <label for="name-id">Nombre</label>
+        {{view Ember.TextField valueBinding="name" id="name-id"}}
+      </div>  
+
+      <div>
+        <label for="surname-id">Apellidos</label>
+        {{view Ember.TextField valueBinding="surname" id="surname-id"}}
+      </div>
+
+      <div>
+        <label for="email-id">Email</label>
+        {{view Ember.TextField valueBinding="email" id="email-id"}}
+      </div>
+
+      <div>
+        <label>Sexo</label>
+        <label class="radio-button-label">
+          {{view Ember.RadioButton name="gender-group" selectionBinding="isSelected" value="male"}}
+          Hombre
+        </label>
+        
+        <label class="radio-button-label">
+          {{view Ember.RadioButton name="gender-group" selectionBinding="isSelected" value="female"}}
+          Mujer
+        </label>
+
+<div>Seleccionado: {{isSelected}}</div>
+
+      </div>
+    </section>
+
+    <section class="right-column">
+      <div>
+        <label for="age-id">Edad</label>
+        {{view Ember.TextField valueBinding="age" id="age-id"}}
+      </div>
+
+      <div>
+        <label for="password-id">Contraseña</label>
+        {{view Ember.TextField type="password" valueBinding="password" id="password-id"}}
+      </div>
+
+      <div>
+        <label for="password-confirmation-id" class="two-lines-label">Confirmar contraseña</label>
+        {{view Ember.TextField type="password" valueBinding="passwordConfirmation" id="password-confirmation-id"}}
+      </div>
+    </section>
+
+    <div class="submit-div">
+      <button type="submit" class="btn btn-primary">Continuar</button>
+    </div>
+  </section>
+</form>

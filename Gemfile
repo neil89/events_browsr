@@ -12,12 +12,10 @@ group :assets do
   gem 'bootstrap-glyphicons'
 end
 
-group :ember do
-  gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
-  gem 'jquery-rails'
-  gem 'ember-rails', github: 'emberjs/ember-rails'
-  gem 'handlebars-source', '1.0.0.rc4'
-end
+gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'jquery-rails'
+gem 'ember-rails', github: 'emberjs/ember-rails'
+gem 'handlebars-source', '1.0.0.rc4'
 
 gem 'mongoid', '~> 3.0.0'
 gem 'bson_ext', '~> 1.9.1'
