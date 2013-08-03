@@ -9,25 +9,25 @@ class User
   field :password, type: String
   field :password_confirmation, type: String
 
-  validates :name, presence: true, length: { minimum: 3, maximum: 20 }
+  validates :name, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
 
-  validates :surname, presence: true, length: { minimum: 3, maximum: 20 }
+  validates :surname, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
 
   VALID_EMAIL_REGULAR_EXP = /\A([a-z][\w+\-.]+)@[a-z][a-z\d\-.]+\.[a-z][a-z]+/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGULAR_EXP }
+  validates :email, presence: { message: "blank" }, format: { with: VALID_EMAIL_REGULAR_EXP, message: "invalid" }
 
-  validates :gender, presence: true, inclusion: [ "male", "female" ]
+  validates :gender, presence: { message: "blank" }, inclusion: { in: [ "male", "female" ], message: "invalid" }
 
-  validates :age, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 18, less_than_or_equal_to: 120 }
+  validates :age, presence: { message: "blank" }, numericality: { only_integer: true, message: "invalid", greater_than_or_equal_to: 18, message: "range", less_than_or_equal_to: 120, message: "range" }
 
-  validates :password, presence: true, length: { minimum: 8 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: { message: "blank" }, length: { minimum: 8, message: "length" }
+  validates :password_confirmation, presence: { message: "blank" }
   
   validate :passwords_should_match
 
   
   def passwords_should_match
-    errors.add(:password_confirmation, "Password confirmation doesn't match with password") unless password == password_confirmation
+    errors.add(:password_confirmation, "confirmation") unless password == password_confirmation
   end
 end
 
