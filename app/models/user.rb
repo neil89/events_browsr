@@ -10,16 +10,7 @@ class User
   field :password_confirmation, type: String
 
   acts_as_api
-
-  api_accessible :unprocessable_user do |response|
-    response.add :name
-    response.add :surname
-    response.add :email
-    response.add :gender
-    response.add :age
-    response.add :password
-    response.add :password_confirmation
-  end
+  include Templates::User
 
   validates :name, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
 

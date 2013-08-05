@@ -64,5 +64,8 @@ module Eventia
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Add the path to take templates of 'act_as_api' gem from 'representations' folder
+    config.autoload_paths += %W(#{config.root}/app/representations)
   end
 end
