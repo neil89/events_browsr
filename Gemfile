@@ -20,6 +20,8 @@ gem 'handlebars-source', '1.0.0.rc4'
 gem 'mongoid', '~> 3.0.0'
 gem 'bson_ext', '~> 1.9.1'
 
+gem 'acts_as_api'
+
 group :development do
   gem 'annotate'
   gem 'guard-rspec'
@@ -29,7 +31,6 @@ end
 
 group :sessions do
   gem 'sorcery'
-  gem 'acts_as_api'
 end
 
 group :test do

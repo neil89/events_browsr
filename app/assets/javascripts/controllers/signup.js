@@ -17,11 +17,11 @@ App.AppSignupController = Ember.ObjectController.extend( {
     var uPassword =             this.get('password');
     var uPasswordConfirmation = this.get('passwordConfirmation');
 
-    console.log("CAPTURADO Nombre: " + uName + 
-      ", Apellidos: " + uSurname + 
-      ", Email: " + uEmail + 
+    console.log("CAPTURADO Nombre: " + uName +
+      ", Apellidos: " + uSurname +
+      ", Email: " + uEmail +
       ", Sexo: " + uGender +
-      ", Edad: " + uAge + 
+      ", Edad: " + uAge +
       ", Contraseña: " + uPassword +
       ", Confirm. Contraseña: " + uPasswordConfirmation);
 

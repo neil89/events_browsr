@@ -18,7 +18,15 @@ class UsersController < ApplicationController
     if u.save!
       render json: u, status: :created
     else
-      render json: u.errors, status: :unprocessable_entity
+      # Standard render with no errors handling
+      #render json: u.errors, status: :unprocessable_entity
+      #
+      # First aproach to errors handling - doesn't change anything
+      #render json: u.errors.messages.to_json, status: :unprocessable_entity
+      
+      respond_to do |format|
+        format.json { render_for_api :unprocessable_user, :json => u.errors, status: :unprocessable_entity }
+      end
     end
 
     u.reload

@@ -9,6 +9,18 @@ class User
   field :password, type: String
   field :password_confirmation, type: String
 
+  acts_as_api
+
+  api_accessible :unprocessable_user do |response|
+    response.add :name
+    response.add :surname
+    response.add :email
+    response.add :gender
+    response.add :age
+    response.add :password
+    response.add :password_confirmation
+  end
+
   validates :name, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
 
   validates :surname, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
@@ -25,7 +37,7 @@ class User
   
   validate :passwords_should_match
 
-  
+
   def passwords_should_match
     errors.add(:password_confirmation, "confirmation") unless password == password_confirmation
   end
