@@ -1,12 +1,3 @@
-// App.Adapter.map
-// (
-//   'App.Profile',
-//   {
-//     projects: {embedded: 'load'},
-//     people: {embedded: 'load'}
-//   }
-// );
-
 App.User = DS.Model.extend( {
   name: DS.attr('string'),
   surname: DS.attr('string'),

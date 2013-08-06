@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'ember-rails', github: 'emberjs/ember-rails'
 gem 'handlebars-source', '1.0.0.rc4'
 
-gem 'mongoid', '~> 3.0.0'
+gem 'mongoid', '~> 3.1.4'
 gem 'bson_ext', '~> 1.9.1'
 
 gem 'acts_as_api'
