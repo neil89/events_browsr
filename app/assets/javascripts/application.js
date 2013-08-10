@@ -16,4 +16,11 @@
 //= require ember-data
 //= require jquery_ujs
 //= require bootstrap
+//= require i18n
+//= require i18n/translations
 //= require app
+
+I18n.defaultLocale = "sp";
+I18n.locale = "sp";
+I18n.currentLocale();
+I18n.fallbacks = true;

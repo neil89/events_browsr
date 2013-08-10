@@ -125,6 +125,8 @@ GEM
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.4)
+    i18n-js (2.1.2)
+      i18n
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -269,6 +271,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   handlebars-source (= 1.0.0.rc4)
+  i18n-js
   jquery-rails
   mongoid (~> 3.1.4)
   mongoid-rspec

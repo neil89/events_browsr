@@ -22,6 +22,8 @@ gem 'bson_ext', '~> 1.9.1'
 
 gem 'acts_as_api'
 
+gem 'i18n-js'
+
 group :development do
   gem 'annotate'
   gem 'guard-rspec'

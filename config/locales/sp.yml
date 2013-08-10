@@ -1,0 +1,12 @@
+sp:
+  hello: "Hola mundo"
+  errors:
+    blank: "El campo {{field}} es obligatorio"
+    length_min_max: "El campo {{field}} debe tener entre {{min}} y {{max}} caracteres"
+    length_min: "El campo {{field}} debe tener {{min}} caracteres o más"
+    length_max: "El campo {{field}} debe tener {{max}} caracteres o menos"
+    invalid_email: "El campo Email no tiene una dirección válida"
+    invalid_gender: "El género debe ser masculino o femenino"
+    invalid_integer: "Debes introducir un número"
+    range_age: "Tu Edad debe ser más de {{min}} años y menos de {{max}}"
+    confirmation_password: "La Confirmación no coindice con la Contraseña"

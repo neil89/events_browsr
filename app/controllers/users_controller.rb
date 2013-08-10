@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  self.responder = ActsAsApi::Responder
   respond_to :json
 
   # GET /users.json
@@ -17,15 +18,10 @@ class UsersController < ApplicationController
     u = User.new(params[:user])
 
     if u.save
-       render json: u, status: :created
+      respond_with u, status: :created
     else
-      respond_with u.errors.messages, :api_template => :unprocessable_user, 
-                                      status: :unprocessable_entity, 
-                                      :location => nil,
-                                      :root => true
-
+      respond_with u, :api_template => :unprocessable_user, 
+                                      status: :unprocessable_entity
     end
-
-    #u.reload
   end  
 end
