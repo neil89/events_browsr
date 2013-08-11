@@ -8,5 +8,5 @@ sp:
     invalid_email: "El campo Email no tiene una dirección válida"
     invalid_gender: "El género debe ser masculino o femenino"
     invalid_integer: "Debes introducir un número"
-    range_age: "Tu Edad debe ser más de {{min}} años y menos de {{max}}"
+    range_age: "El campo Edad debe ser más de {{min}} y menos de {{max}}"
     confirmation_password: "La Confirmación no coindice con la Contraseña"

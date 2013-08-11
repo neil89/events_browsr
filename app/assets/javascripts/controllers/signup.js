@@ -7,6 +7,33 @@ App.AppSignupController = Ember.ObjectController.extend( {
   password: null,
   passwordConfirmation: null,
 
+  reset: function() {
+    this.set('name', "");
+    this.set('surname', "");
+    this.set('email', "");
+    this.set('gender', "");
+    this.set('age', "");
+    this.set('password', "");
+    this.set('passwordConfirmation', "");
+
+    this.transaction = this.get('store').transaction();
+
+    var dummyUser = this.transaction.createRecord
+    (
+      App.User
+    );
+
+    this.set('model', dummyUser);
+
+    this.set('model.nameError', null);
+    this.set('model.surnameError', null);
+    this.set('model.emailError', null);
+    this.set('model.genderError', null);
+    this.set('model.ageError', null);
+    this.set('model.passwordError', null);
+    this.set('model.passwordConfirmationError', null);
+  },
+
   createUser: function() {
     var uName =                 this.get('name');
     var uSurname =              this.get('surname');

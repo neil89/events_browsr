@@ -16,10 +16,20 @@ App.User = DS.Model.extend( {
   passwordConfirmationError: null,
 
   becameInvalid: function(errors) {
+    this.nameErrorTranslation(errors.errors.name);
+    this.surnameErrorTranslation(errors.errors.surname);
+    this.emailErrorTranslation(errors.errors.email);
+    this.genderErrorTranslation(errors.errors.gender);
+    this.ageErrorTranslation(errors.errors.age);
+    this.passwordErrorTranslation(errors.errors.password);
+    this.passwordConfirmationErrorTranslation(errors.errors.password_confirmation);
+  },
+
+  nameErrorTranslation: function(errors) {
     var arr = [];
 
-    if (errors.errors.name !== undefined) {
-      errors.errors.name.forEach(function (err) {
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "length") {
           err = "length_min_max";
         }
@@ -28,10 +38,13 @@ App.User = DS.Model.extend( {
       });
       this.set('nameError', arr);
     }
+  },
 
-    if (errors.errors.surname !== undefined) {
-      arr = [];
-      errors.errors.surname.forEach(function (err) {
+  surnameErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "length") {
           err = "length_min_max";
         }
@@ -40,10 +53,13 @@ App.User = DS.Model.extend( {
       });
       this.set('surnameError', arr);
     }
+  },
 
-    if (errors.errors.email !== undefined) {
-      arr = [];
-      errors.errors.email.forEach(function (err) {
+  emailErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "invalid") {
           err = "invalid_email";
         }
@@ -52,10 +68,13 @@ App.User = DS.Model.extend( {
       });
       this.set('emailError', arr);
     }
+  },
 
-    if (errors.errors.gender !== undefined) {
-      arr = [];
-      errors.errors.gender.forEach(function (err) {
+  genderErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "invalid") {
           err = "invalid_gender";
         }
@@ -64,10 +83,13 @@ App.User = DS.Model.extend( {
       });
       this.set('genderError', arr);
     }
+  },
 
-    if (errors.errors.age !== undefined) {
-      arr = [];
-      errors.errors.age.forEach(function (err) {
+  ageErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "invalid") {
           err = "invalid_integer";
         }
@@ -79,10 +101,13 @@ App.User = DS.Model.extend( {
       });
       this.set('ageError', arr);
     }
+  },
 
-    if (errors.errors.password !== undefined) {
-      arr = [];
-      errors.errors.password.forEach(function (err) {
+  passwordErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "length") {
           err = "length_min";
         }
@@ -91,10 +116,13 @@ App.User = DS.Model.extend( {
       });
       this.set('passwordError', arr);
     }
+  },
 
-    if (errors.errors.password_confirmation !== undefined) {
-      arr = [];
-      errors.errors.password_confirmation.forEach(function (err) {
+  passwordConfirmationErrorTranslation: function(errors) {
+    var arr = [];
+
+    if (errors !== undefined) {
+      errors.forEach(function (err) {
         if (err == "confirmation") {
           err = "confirmation_password";
         }
@@ -104,29 +132,5 @@ App.User = DS.Model.extend( {
       this.set('passwordConfirmationError', arr);
     }
   }
-
-/*****************************************************************
-** LOS ERRORES SE FACTORIZARÍAN COMO SIGUE. NO HA SIDO POSIBLE  **
-** PORQUE AL HACER ESO NO SE DISPARAN LOS EVENTOS DE EMBER-DATA **
-** DONDE SE MANEJAN LOS ERRORES Y POR TANTO NO SE RECIBEN AQUÍ  **
-** PARA GUARDARLOS EN LAS CORRESPONDIENTES VARIABLES. AL        **
-** ELIMINAR EL PROPERTY AL FINAL DE LA FUNCIÓN SI QUE SE        **
-** DISPARAN TODOS LOS EVENTOS CON NORMALIDAD.                   **
-*****************************************************************/
-
-  // nameErrorTranslation: function() {
-  //   var arr = [];
-
-  //   if (errors.errors.name !== undefined) {
-  //     errors.errors.name.forEach(function (err) {
-  //       if (err == "length") {
-  //         err = "length_min_max";
-  //       }
-        
-  //       arr.push(I18n.t("errors." + err, { field: "Nombre", min: 3, max: 20 }));
-  //     });
-  //     this.set('nameError', arr);
-  //   }
-  // }.property('nameError')
 
 });
