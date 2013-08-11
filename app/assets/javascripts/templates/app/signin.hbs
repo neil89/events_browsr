@@ -1,1 +1,23 @@
-<h1>Sign in</h1>
+<h1>Entrar</h1>
+
+<form {{action login on="submit"}}>
+  <section class="sign-in-form">
+
+    <div {{bindAttr class=":control-group emailError:error"}}>
+      <label for="email-id-sign-in" class="control-label">Email</label>
+      {{view Ember.TextField valueBinding="email" id="email-id-sign-in"}}
+    </div>
+
+    <div {{bindAttr class=":control-group emailError:error"}}>
+      <label for="email-id-sign-in" class="control-label">Contraseña</label>
+      {{view Ember.TextField valueBinding="password" type="password" id="email-id-sign-in"}}
+    </div>
+
+    <div class="submit-div">
+      {{#linkTo app}}
+        <button class="btn btn-danger">Cancelar</button>
+      {{/linkTo}}
+      <button type="submit" class="btn btn-success">Entrar</button>
+    </div>
+  </section>
+</form>

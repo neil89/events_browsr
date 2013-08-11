@@ -103,108 +103,30 @@ App.User = DS.Model.extend( {
       });
       this.set('passwordConfirmationError', arr);
     }
-  },
+  }
 
+/*****************************************************************
+** LOS ERRORES SE FACTORIZARÍAN COMO SIGUE. NO HA SIDO POSIBLE  **
+** PORQUE AL HACER ESO NO SE DISPARAN LOS EVENTOS DE EMBER-DATA **
+** DONDE SE MANEJAN LOS ERRORES Y POR TANTO NO SE RECIBEN AQUÍ  **
+** PARA GUARDARLOS EN LAS CORRESPONDIENTES VARIABLES. AL        **
+** ELIMINAR EL PROPERTY AL FINAL DE LA FUNCIÓN SI QUE SE        **
+** DISPARAN TODOS LOS EVENTOS CON NORMALIDAD.                   **
+*****************************************************************/
 
   // nameErrorTranslation: function() {
-  //    return I18n.t("hello") + this.get('nameError');
+  //   var arr = [];
+
+  //   if (errors.errors.name !== undefined) {
+  //     errors.errors.name.forEach(function (err) {
+  //       if (err == "length") {
+  //         err = "length_min_max";
+  //       }
+        
+  //       arr.push(I18n.t("errors." + err, { field: "Nombre", min: 3, max: 20 }));
+  //     });
+  //     this.set('nameError', arr);
+  //   }
   // }.property('nameError')
 
-/*
-  nameError: function() {
-    return this.get('errors.name');
-  }.property('errors')
-*/
-
-  // becameError: function() {
-  //   // handle error case here
-  //   alert ('¡Ocurrio un error!');
-  // },
-
-  // becameInvalid: function(errors) {
-  //   // record was invalid
-  //   var text = "El registro fue invalido debido a: ";
-  //   var i = 0;
-
-  //   if (errors.errors.name !== undefined)
-  //   {
-  //     text += " NOMBRE ->";
-
-  //     for (i=0; i<errors.errors.name.length; i++)
-  //       text += " *" + errors.errors.name[i] + "*";
-  //   }
-
-  //   if (errors.errors.surname !== undefined)
-  //   {
-  //     text += " APELLIDOS ->";
-
-  //     for (i=0; i<errors.errors.surname.length; i++)
-  //       text += " *" + errors.errors.surname[i] + "*";
-  //   }
-
-  //   if (errors.errors.email !== undefined)
-  //   {
-  //     text += " EMAIL ->";
-
-  //     for (i=0; i<errors.errors.email.length; i++)
-  //       text += " *" + errors.errors.email[i] + "*";
-  //   }
-
-  //   if (errors.errors.gender !== undefined)
-  //   {
-  //     text += " SEXO ->";
-
-  //     for (i=0; i<errors.errors.gender.length; i++)
-  //       text += " *" + errors.errors.gender[i] + "*";
-  //   }
-
-  //   if (errors.errors.age !== undefined)
-  //   {
-  //     text += " EDAD ->";
-
-  //     for (i=0; i<errors.errors.age.length; i++)
-  //       text += " *" + errors.errors.age[i] + "*";
-  //   }
-
-  //   if (errors.errors.password !== undefined)
-  //   {
-  //     text += " CONTRASEÑA ->";
-
-  //     for (i=0; i<errors.errors.password.length; i++)
-  //       text += " *" + errors.errors.password[i] + "*";
-  //   }
-
-  //   if (errors.errors.password_confirmation !== undefined)
-  //   {
-  //     text += " CONFIRM. CONTRASEÑA ->";
-
-  //     for (i=0; i<errors.errors.password_confirmation.length; i++)
-  //       text += " *" + errors.errors.password_confirmation[i] + "*";
-  //   }
-
-  //   alert (text);
-  // }
 });
-
-/*
-DS.Adapter.create( {
-  createRecord: function(store, type, model) {
-    var url = type.url;
-
-    jQuery.ajax( {
-      url: url.fmt(model.get('id')),
-      data: model.get('data'),
-      dataType: 'json',
-      type: 'POST',
-
-      success: function(data) {
-          // data is a hash of key/value pairs representing the record.
-          // In general, this hash will contain a new id, which the
-          // store will now use to index the record. Future calls to
-          // store.find(type, id) will find this record.
-          store.didCreateRecord(model, data);
-      }
-    });
-  }
-});
-*/

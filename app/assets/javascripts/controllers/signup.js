@@ -45,11 +45,5 @@ App.AppSignupController = Ember.ObjectController.extend( {
 
     this.transaction.commit();
     this.transaction = null;
-  },
-
-  // nameErrorTranslation: function() {
-  //   var str = I18n.t("hello");
-  //   return true;
-  //   //return (str + this.get('nameError'));
-  // }.property('surname')
+  }
 });

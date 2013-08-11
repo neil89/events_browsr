@@ -33,18 +33,18 @@
   <section class="sign-up-form">
     <section class="left-column">
       <div {{bindAttr class=":control-group nameError:error"}}>
-        <label for="name-id" class="control-label">Nombre</label>
-        {{view Ember.TextField valueBinding="name" id="name-id"}}        
+        <label for="name-id-sign-up" class="control-label">Nombre</label>
+        {{view Ember.TextField valueBinding="name" id="name-id-sign-up"}}        
       </div>  
 
       <div {{bindAttr class=":control-group surnameError:error"}}>
-        <label for="surname-id" class="control-label">Apellidos</label>
-        {{view Ember.TextField valueBinding="surname" id="surname-id"}}
+        <label for="surname-id-sign-up" class="control-label">Apellidos</label>
+        {{view Ember.TextField valueBinding="surname" id="surname-id-sign-up"}}
       </div>
 
       <div {{bindAttr class=":control-group emailError:error"}}>
-        <label for="email-id" class="control-label">Email</label>
-        {{view Ember.TextField valueBinding="email" id="email-id"}}
+        <label for="email-id-sign-up" class="control-label">Email</label>
+        {{view Ember.TextField valueBinding="email" id="email-id-sign-up"}}
       </div>
 
       <div {{bindAttr class=":control-group genderError:error"}}>
@@ -63,18 +63,18 @@
 
     <section class="right-column">
       <div {{bindAttr class=":control-group ageError:error"}}>
-        <label for="age-id" class="control-label">Edad</label>
-        {{view Ember.TextField valueBinding="age" id="age-id"}}
+        <label for="age-id-sign-up" class="control-label">Edad</label>
+        {{view Ember.TextField valueBinding="age" id="age-id-sign-up"}}
       </div>
 
       <div {{bindAttr class=":control-group passwordError:error"}}>
-        <label for="password-id" class="control-label">Contraseña</label>
-        {{view Ember.TextField type="password" valueBinding="password" id="password-id"}}
+        <label for="password-id-sign-up" class="control-label">Contraseña</label>
+        {{view Ember.TextField type="password" valueBinding="password" id="password-id-sign-up"}}
       </div>
 
       <div {{bindAttr class=":control-group passwordConfirmationError:error"}}>
-        <label for="password-confirmation-id" class="control-label">Confirmar contraseña</label>
-        {{view Ember.TextField type="password" valueBinding="passwordConfirmation" id="password-confirmation-id"}}
+        <label for="password-confirmation-id-sign-up" class="two-lines-label control-label">Confirmar contraseña</label>
+        {{view Ember.TextField type="password" valueBinding="passwordConfirmation" id="password-confirmation-id-sign-up"}}
       </div>
     </section>
     <div class="submit-div">
