@@ -24,15 +24,13 @@ gem 'acts_as_api'
 
 gem 'i18n-js'
 
+gem 'sorcery'
+
 group :development do
   gem 'annotate'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
-end
-
-group :sessions do
-  gem 'sorcery'
 end
 
 group :test do

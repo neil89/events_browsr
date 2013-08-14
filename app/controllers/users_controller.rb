@@ -18,10 +18,9 @@ class UsersController < ApplicationController
     u = User.new(params[:user])
 
     if u.save
-      respond_with u, status: :created
+      respond_with u, :api_template => :general_user, status: :created
     else
-      respond_with u, :api_template => :unprocessable_user, 
-                                      status: :unprocessable_entity
+      respond_with u, :api_template => :unprocessable_user, status: :unprocessable_entity
     end
   end  
 end

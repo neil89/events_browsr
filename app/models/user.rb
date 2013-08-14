@@ -1,11 +1,15 @@
 class User
   include Mongoid::Document
 
+  authenticates_with_sorcery!
+
   field :name, type: String
   field :surname, type: String
   field :email, type: String
   field :gender, type: String
   field :age, type: Integer
+  field :crypted_password, type: String
+  field :salt, type: String
   field :password, type: String
   field :password_confirmation, type: String
 
