@@ -1,6 +1,17 @@
 App.AppSigninController = Ember.ObjectController.extend( {
+  needs: ['app'],
+
   email: null,
   password: null,
+
+  flagSignedUp: false,
+  nextFlagSignedUp: false,
+
+  flagNotLoggedIn: false,
+  nextFlagNotLoggedIn: false,
+
+  flagInvalidAuthentication: false,
+  nextFlagInvalidAuthentication: false,
 
   userId: null,
   loginError: null,
@@ -8,6 +19,17 @@ App.AppSigninController = Ember.ObjectController.extend( {
   reset: function() {
     this.set('email', "");
     this.set('password', "");
+
+    this.set('loginError', null);
+
+    this.set('flagSignedUp', this.get('nextFlagSignedUp'));
+    this.set('nextFlagSignedUp', false);
+
+    this.set('flagNotLoggedIn', this.get('nextFlagNotLoggedIn'));
+    this.set('nextFlagNotLoggedIn', false);
+
+    this.set('flagInvalidAuthentication', this.get('nextFlagInvalidAuthentication'));
+    this.set('nextFlagInvalidAuthentication', false);
   },
 
   login: function() {
@@ -23,12 +45,18 @@ App.AppSigninController = Ember.ObjectController.extend( {
     $.post('/sessions.json', data)
     .then(function(response) {
       if (response.errors) {
+        self.set('controllers.app.loggedIn', false);
         self.set('userId', null);
         self.set('loginError', response.errors.login);
+        self.set('nextFlagInvalidAuthentication', true);
+        self.reset();
         alert("Errores: " + response.errors.login);
       }
       else {
+        self.set('controllers.app.loggedIn', true);
         self.set('userId', response.session.id);
+        self.set('loginError', null);
+        self.send('goToBoard');
         alert("Correcto - id = *" + response.session.id + "*");
       }
     });

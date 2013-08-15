@@ -70,7 +70,15 @@ App.AppSignupController = Ember.ObjectController.extend( {
 
     this.set('model', newUser);
 
+    var self = this;
+
+    newUser.one('didCreate', function() {
+      Ember.run.next(function() {
+        self.send('signedUpRedirect');
+      });
+    });
+
     this.transaction.commit();
     this.transaction = null;
-  }
+  },
 });

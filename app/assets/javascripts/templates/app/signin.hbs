@@ -1,5 +1,17 @@
 <h1>Entrar</h1>
 
+{{#if flagSignedUp}}
+  <div class="alert alert-success">Enhorabuena, tu cuenta se ha creado correctamente</div>
+{{/if}}
+
+{{#if flagNotLoggedIn}}
+  <div class="alert alert-warning">Tienes que entrar en tu cuenta primero</div>
+{{/if}}
+
+{{#if flagInvalidAuthentication}}
+  <div class="alert alert-error">Combinación de email/contraseña incorrecta</div>
+{{/if}}
+
 <form {{action login on="submit"}}>
   <section class="sign-in-form">
 

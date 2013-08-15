@@ -6,4 +6,4 @@ App.AppIndexController = Ember.ObjectController.extend( {
   signUpAction: function() {
     this.send('goToSignUp');
   }
-})
+});
