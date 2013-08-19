@@ -270,7 +270,7 @@ DEPENDENCIES
   capybara
   cucumber-rails
   ember-rails!
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   guard-rspec
   guard-spork
   handlebars-source (= 1.0.0.rc4)

@@ -39,7 +39,7 @@ group :test do
   gem 'json_spec'
   gem 'cucumber-rails', :require => false
   gem 'capybara'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 4.0"
   gem 'simple_cov'
   gem 'simple_cov-html'
 end

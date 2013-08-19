@@ -57,4 +57,20 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET #show" do
+
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it "should return the requested user" do
+      get :show, id: @user 
+    end
+
+    it "should return a 200 HTTP status" do
+      get :show, id: @user 
+      response.code.should == "200"
+    end
+  end
 end
