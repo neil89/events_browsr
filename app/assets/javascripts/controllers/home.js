@@ -1,4 +1,4 @@
-App.AppBoardController = Ember.ObjectController.extend( {
+App.AppHomeController = Ember.ObjectController.extend( {
   needs: ['app'],
 
   flagLoggedIn: false,

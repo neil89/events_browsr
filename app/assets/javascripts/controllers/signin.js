@@ -54,9 +54,10 @@ App.AppSigninController = Ember.ObjectController.extend( {
       }
       else {
         self.set('controllers.app.loggedIn', true);
+        self.set('controllers.app.model', App.User.find(response.session.id));
         self.set('userId', response.session.id);
         self.set('loginError', null);
-        self.send('goToBoard');
+        self.send('goToHome');
         alert("Correcto - id = *" + response.session.id + "*");
       }
     });

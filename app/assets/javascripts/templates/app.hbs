@@ -5,31 +5,31 @@
     {{/linkTo}}
     {{#if loggedIn}}
       <ul class="nav">
-        {{#linkTo "app.board" tagName="li"}}
-          <a {{bindAttr href="view.href"}}>Tablón</a>
+        {{#linkTo "app.home" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Inicio</a>
         {{/linkTo}}
-        {{#linkTo "app" tagName="li"}}
-          <a {{bindAttr href="view.href"}}>Amigos</a>
+        {{#linkTo "events.index" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Listado de eventos</a>
         {{/linkTo}}
-        {{#linkTo "app" tagName="li"}}
-          <a {{bindAttr href="view.href"}}>Colegas</a>
+        {{#linkTo "events.new" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Añadir evento</a>
         {{/linkTo}}
-        {{#linkTo "app" tagName="li"}}
-          <a {{bindAttr href="view.href"}}>Perfil</a>
+        {{#linkTo "events.own" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Mis eventos</a>
         {{/linkTo}}
       </ul>
 
       <ul class="nav pull-right">
         <li class="dropdown">
           <a href="app" class="dropdown-toggle" data-toggle="dropdown">
-            Bienvenid@, {{personName}} <b class="caret"></b>
+            Bienvenid@, {{model.email}} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             {{#linkTo "app" tagName="li"}}
-              <a {{bindAttr href="view.href"}}>Ver perfil</a>
+              <a {{bindAttr href="view.href"}}>Mi perfil</a>
             {{/linkTo}}
             {{#linkTo "app" tagName="li"}}
-              <a {{bindAttr href="view.href"}}>Editar perfil</a>
+              <a {{bindAttr href="view.href"}}>Cerrar sesión</a>
             {{/linkTo}}
           </ul>
         </li>

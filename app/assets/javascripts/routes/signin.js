@@ -4,9 +4,9 @@ App.AppSigninRoute = Ember.Route.extend( {
   },
 
   events: {
-    goToBoard: function() {
-      this.controllerFor('app.board').set('nextFlagLoggedIn', true);
-      this.transitionTo('app.board');
+    goToHome: function() {
+      this.controllerFor('app.home').set('nextFlagLoggedIn', true);
+      this.transitionTo('app.home');
     }
   }
 });
