@@ -13,3 +13,7 @@ RSpec.configure do |config|
     Mongoid.purge!
   end
 end
+
+RSpec.configure do |config|
+  config.include JsonSpec::Helpers
+end

@@ -32,7 +32,29 @@ describe UsersController do
         response.code.should == "422"
       end
 
-      it "should return errros as JSON"
+      it "should return errors as JSON" do
+        json = response.body
+
+        parse_json(json, "errors/name").should include "blank"
+        parse_json(json, "errors/name").should include "length"
+
+        parse_json(json, "errors/surname").should include "blank"
+        parse_json(json, "errors/surname").should include "length"
+
+        parse_json(json, "errors/email").should include "blank"
+        parse_json(json, "errors/email").should include "invalid"
+
+        parse_json(json, "errors/gender").should include "blank"
+        parse_json(json, "errors/gender").should include "invalid"
+
+        parse_json(json, "errors/age").should include "blank"
+        parse_json(json, "errors/age").should include "range"
+
+        parse_json(json, "errors/password").should include "blank"
+        parse_json(json, "errors/password").should include "length"
+
+        parse_json(json, "errors/password_confirmation").should include "blank"
+      end
     end
   end
 end

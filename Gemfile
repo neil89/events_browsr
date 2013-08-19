@@ -36,6 +36,7 @@ end
 group :test do
   gem 'mongoid-rspec'
   gem 'rspec-rails'
+  gem 'json_spec'
   gem 'cucumber-rails', :require => false
   gem 'capybara'
   gem 'factory_girl_rails'
