@@ -30,11 +30,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "length") {
-          err = "length_min_max";
-        }
-        
-        arr.push(I18n.t("errors." + err, { field: "Nombre", min: 3, max: 20 }));
+        arr.push(I18n.t("errors.name." + err, { min: 3, max: 20 }));
       });
       this.set('nameError', arr);
     }
@@ -45,11 +41,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "length") {
-          err = "length_min_max";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Apellidos", min: 3, max: 20 }));
+        arr.push(I18n.t("errors.surname." + err, { min: 3, max: 20 }));
       });
       this.set('surnameError', arr);
     }
@@ -60,11 +52,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "invalid") {
-          err = "invalid_email";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Email" }));
+        arr.push(I18n.t("errors.email." + err));
       });
       this.set('emailError', arr);
     }
@@ -75,11 +63,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "invalid") {
-          err = "invalid_gender";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Sexo" }));
+        arr.push(I18n.t("errors.gender." + err));
       });
       this.set('genderError', arr);
     }
@@ -90,14 +74,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "invalid") {
-          err = "invalid_integer";
-        }
-        else if (err == "range") {
-          err = "range_age";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Edad", min: 18, max: 120 }));
+        arr.push(I18n.t("errors.age." + err, { min: 18, max: 120 }));
       });
       this.set('ageError', arr);
     }
@@ -108,11 +85,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "length") {
-          err = "length_min";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Contraseña", min: 8 }));
+        arr.push(I18n.t("errors.password." + err, { min: 8 }));
       });
       this.set('passwordError', arr);
     }
@@ -123,11 +96,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
-        if (err == "confirmation") {
-          err = "confirmation_password";
-        }
-
-        arr.push(I18n.t("errors." + err, { field: "Confirmar contraseña" }));
+        arr.push(I18n.t("errors.password_confirmation." + err));
       });
       this.set('passwordConfirmationError', arr);
     }

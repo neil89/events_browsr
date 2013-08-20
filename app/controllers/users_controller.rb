@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     p = User.find(params[:id])
-    render json: p, status: :ok
+    
+    if p
+      render json: p, status: :ok
+    else
+      render json: p, status: :not_found
+    end
   end
 
   # POST /users.json

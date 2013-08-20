@@ -1,18 +1,26 @@
 require 'spec_helper'
 
 describe UsersController do
+  describe "GET #show" do
+
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it "should return the requested user" do
+      get :show, id: @user 
+    end
+
+    it "should return a 200 HTTP status" do
+      get :show, id: @user 
+      response.code.should == "200"
+    end
+  end
+
   describe "POST #create" do
     context "with valid attributes" do
       before(:each) do
-        post :create, :user => { 
-                        :name => "Foo", 
-                        :surname => "Bar" ,
-                        :email => "foo@bar.org",
-                        :gender => "male",
-                        :age => 25,
-                        :password => "foobarfoobar",
-                        :password_confirmation => "foobarfoobar"
-                               }, 
+        post :create, user: FactoryGirl.attributes_for(:user),
                       :api_template => :general_user, 
                       :format => 'json'
       end
@@ -34,7 +42,7 @@ describe UsersController do
 
       it "should return errors as JSON" do
         json = response.body
-
+        
         parse_json(json, "errors/name").should include "blank"
         parse_json(json, "errors/name").should include "length"
 
@@ -55,22 +63,6 @@ describe UsersController do
 
         parse_json(json, "errors/password_confirmation").should include "blank"
       end
-    end
-  end
-
-  describe "GET #show" do
-
-    before(:each) do
-      @user = FactoryGirl.create(:user)
-    end
-
-    it "should return the requested user" do
-      get :show, id: @user 
-    end
-
-    it "should return a 200 HTTP status" do
-      get :show, id: @user 
-      response.code.should == "200"
     end
   end
 end
