@@ -20,25 +20,32 @@
 
 .sign-up-form
 {
-  .control-label
-  {
-    font-weight: bold;
-  }
   .radio-button-label
   {
     font-weight: normal;
   }
 }
 
-.sign-in-form
+.profile-form
 {
-  .control-label
+  .radio-button-label
   {
-    font-weight: bold;
+    font-weight: normal;
   }
+}
+
+.control-label
+{
+  font-weight: bold;
 }
 
 .nav li
 {
   cursor: pointer;
+}
+
+.disabled
+{
+  cursor: not-allowed;
+  color: #888;
 }

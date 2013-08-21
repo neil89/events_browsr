@@ -8,5 +8,6 @@ App.Router.map( function() {
       this.route('new', { path: '/new' });
       this.route('own', { path: '/:user_id' });
     });
+    this.route('profile', { path: '/profile' });
   });
 });

@@ -46,16 +46,6 @@ input[type="radio"]
 {
   width: 70%;
   margin: 0 auto;
-  .radio
-  {
-    width: 90px; 
-    float: left;
-    span
-    {
-      display: block;
-      padding: 5px 0;
-    }
-  }
   label
   {
     text-align: right;
@@ -110,6 +100,40 @@ input[type="radio"]
   }
 }
 
+
+.profile-form
+{
+  width: 70%;
+  margin: 0 auto;
+  .radio-div
+  {
+    padding-bottom: 45px;
+  }
+  label
+  {
+    text-align: right;
+    float: left;
+    width: 90px;
+    padding: 5px 12px 0 0;
+    display: block;
+  }
+  .info-div
+  {
+    padding-top: 5px;
+  }
+  button
+  {
+    width: 17%;
+    margin: 5px 20px;
+  }
+  & > div
+  {
+    clear: both;
+    padding: 25px 0;
+    text-align: center;
+  }
+}
+
 .column
 {
   width: 45%;
@@ -129,4 +153,19 @@ input[type="radio"]
 {
   @extend .column;
   float: right;
+}
+
+.modal-footer
+{
+  & > div
+  {
+    clear: both;
+    padding: 0;
+    text-align: center;
+  }
+  button
+  {
+    width: 20%;
+    margin: 0 15px;
+  }
 }

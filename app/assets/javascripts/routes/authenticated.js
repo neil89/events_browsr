@@ -3,8 +3,7 @@ App.AuthenticatedRoute = Ember.Route.extend( {
     var loggedIn = this.controllerFor('app').get('loggedIn');
 
     if (!loggedIn) {
-      this.controllerFor('app.signin').set('nextFlagNotLoggedIn', true);
-      this.controllerFor('app.signin').reset();
+      this.controllerFor('app.signin').set('flagNotLoggedIn', true);
       this.transitionTo('app.signin');
     }
   }
