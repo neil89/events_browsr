@@ -1,32 +1,29 @@
 <h1>Mi perfil</h1>
 
-{{#each e in nameError}}
+{{#each e in model.nameError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in surnameError}}
+{{#each e in model.surnameError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in emailError}}
+{{#each e in model.emailError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in genderError}}
+{{#each e in model.genderError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in ageError}}
+{{#each e in model.ageError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in passwordError}}
+{{#each e in model.passwordError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in passwordConfirmationError}}
-  <div class="alert alert-danger">{{e}}</div>
-{{/each}}
 
 
 <section class="profile-form">
@@ -34,7 +31,7 @@
     <div {{bindAttr class=":control-group nameError:error"}}>
       <label for="name-id-profile" class="control-label">Nombre</label>
       {{#if isEditing}}
-        {{view App.EditProfileView valueBinding="name"}}
+        {{view App.EditProfileView valueBinding="model.name"}}
       {{else}}
         <div class="info-div">{{model.name}}</div>
       {{/if}}
@@ -43,7 +40,7 @@
     <div {{bindAttr class=":control-group surnameError:error"}}>
       <label for="surname-id-profile" class="control-label">Apellidos</label>
       {{#if isEditing}}
-        {{view App.EditProfileView valueBinding="surname"}}
+        {{view App.EditProfileView valueBinding="model.surname"}}
       {{else}}
         <div class="info-div">{{model.surname}}</div>
       {{/if}}
@@ -52,7 +49,7 @@
     <div {{bindAttr class=":control-group emailError:error"}}>
       <label for="email-id-profile" class="control-label">Email</label>
       {{#if isEditing}}
-        {{view App.EditProfileView valueBinding="email"}}
+        {{view App.EditProfileView valueBinding="model.email"}}
       {{else}}
         <div class="info-div">{{model.email}}</div>
       {{/if}}
@@ -64,16 +61,16 @@
       <label class="control-label">Sexo</label>
       {{#if isEditing}}
         <label>
-          {{view Ember.RadioButton name="gender-group" selectionBinding="gender" value="male"}}
+          {{view Ember.RadioButton name="gender-group" selectionBinding="model.gender" value="male"}}
           Masculino
         </label>
         
         <label>
-          {{view Ember.RadioButton name="gender-group" selectionBinding="gender" value="female"}}
+          {{view Ember.RadioButton name="gender-group" selectionBinding="model.gender" value="female"}}
           Femenino
         </label>
       {{else}}
-        <div class="info-div">{{model.gender}}</div>
+        <div class="info-div">{{beautifyGender model.gender}}</div>
       {{/if}}
       
     </div>
@@ -81,21 +78,25 @@
     <div {{bindAttr class=":control-group ageError:error"}}>
       <label for="age-id-profile" class="control-label">Edad</label>
       {{#if isEditing}}
-        {{view App.EditProfileView valueBinding="age"}}
+        {{view App.EditProfileView valueBinding="model.age"}}
       {{else}}
         <div class="info-div">{{model.age}}</div>
       {{/if}}
     </div>
 
     <div class="control-group passwordError:error"}}>
-      <label {{bindAttr class=":control-label isEditing:disabled"}}>Contraseña</label>
+      <label {{bindAttr class=":control-label"}}>Contraseña</label>
+      {{#if isEditing}}
+        {{view App.EditProfileView valueBinding="model.password"}}
+      {{else}}
         <a href="#password-change-modal" role="button" {{bindAttr class=":btn isEditing:disabled"}} data-toggle="modal">Cambiar contraseña</a>
+      {{/if}}
     </div>
   </section>
   <div>
     {{#if isEditing}}
       <button {{action updateUser}} class="btn btn-success">Aceptar</button>
-      <button class="btn btn-danger">Cancelar</button>
+      <button {{action cancelEdition}} class="btn btn-danger">Cancelar</button>
     {{else}}
       <button {{action editProfile}} class="btn btn-warning">Modificar</button>
       <button {{action deleteUser}} class="btn btn-danger">Eliminar cuenta</button>
@@ -112,20 +113,20 @@
   <div class="modal-body">
     <section class="left-column">
       <div {{bindAttr class=":control-group passwordError:error"}}>
-        <label for="password-id-profile" class="control-label">Contraseña actual</label>
-        {{view Ember.TextField type="password" valueBinding="password" id="password-id-profile"}}
+        <label for="current-password-id-profile" class="control-label">Contraseña actual</label>
+        {{view Ember.TextField type="password" valueBinding="password" id="current-password-id-profile"}}
       </div>
     </section>
 
     <section class="right-column">
       <div {{bindAttr class=":control-group passwordError:error"}}>
-        <label for="password-id-profile" class="control-label">Contraseña nueva</label>
-        {{view Ember.TextField type="password" valueBinding="password" id="password-id-profile"}}
+        <label for="new-password-id-profile" class="control-label">Contraseña nueva</label>
+        {{view Ember.TextField type="password" valueBinding="password" id="new-password-id-profile"}}
       </div>
 
       <div {{bindAttr class=":control-group passwordConfirmationError:error"}}>
-        <label for="password-confirmation-id-profile" class="two-lines-label control-label">Confirmar contraseña nueva</label>
-        {{view Ember.TextField type="password" valueBinding="passwordConfirmation" id="password-confirmation-id-profile"}}
+        <label for="new-password-confirmation-id-profile" class="two-lines-label control-label">Confirmar contraseña nueva</label>
+        {{view Ember.TextField type="password" valueBinding="passwordConfirmation" id="new-password-confirmation-id-profile"}}
       </div>
     </section>
   </div>

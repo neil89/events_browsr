@@ -28,10 +28,20 @@ class UsersController < ApplicationController
   def update
     u = User.find(params[:id])
 
-    if u.update_attributes(params[:user])
-      respond_with u, :api_template => :general_user, status: :no_content
-    else
-      respond_with u, status: :not_found
+    profile_user = login(u.email, params[:user][:password])
+
+    if u == profile_user  # params[:user][:password] is a valid password, so the update is performed
+      if u.update_attributes(params[:user])
+        respond_with u, api_template: :general_user, status: :ok#status: :no_content
+      else
+        logger.debug "**"
+        logger.debug "**"
+        logger.debug "Errores: #{u.to_s}"
+        logger.debug "**"
+        logger.debug "Errores: #{u.errors.messages.to_json}"
+        logger.debug "**"
+        respond_with u, api_template: :unprocessable_user, root: :errors, status: :ok
+      end
     end
   end
 

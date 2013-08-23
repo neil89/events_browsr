@@ -3,26 +3,48 @@ App.AppProfileController = Ember.ObjectController.extend( {
 
   isEditing: false,
 
+  id: null,
+  
+  prevModel
+
+  data: null,
+
   editProfile: function() {
     this.set('isEditing', true);
+
+    var profile = this.get('model');
+    this.set('id', profile.get('id'));
+
+    var transaction = profile.get('store').transaction();
+    transaction.add(profile);
+    this.transaction = transaction;
+  },
+
+  cancelEdition: function() {
+    this.set('isEditing', false);
+
+    //this.set('model', App.User.find({id: this.get('id')}));
+
+    var transaction = this.transaction;
+    if (transaction) {
+      transaction.rollback();
+      this.transaction = undefined;
+    }
   },
 
   updateUser: function() {
+    this.set('model.password_confirmation', this.get('model.password'));
 
-
-
-/*
-this.set('isEditing', false);
-
-var editProject = this.get('model');
-var transaction = editProject.get('store').transaction();
-transaction.add(editProject);
-this.transaction = transaction;
-
-this.transaction.commit();
-this.transaction = null;
-*/
+    this.transaction.commit();
+    this.transaction = undefined;
+    this.cancelEdition();
   },
+
+
+
+
+
+
 
   deleteUser: function() {
 /*    
@@ -37,6 +59,7 @@ if (window.confirm("¿Estás seguro de que quieres eliminar este proyecto?"))
   },
 
   model: function() {
-    return this.get('controllers.app.model');
-  }.property('controllers.app.model')
+    return this.get('model');
+  }.property('model')
+  
 });
