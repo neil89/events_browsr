@@ -20,6 +20,7 @@ sp:
     password:
         blank: "El campo Contraseña es obligatorio"
         length: "El campo Contraseña debe tener {{min}} caracteres o más"
+        wrong: "La Contraseña no es correcta"
     password_confirmation:
         blank: "El campo Confirmar Contraseña es obligatorio"
         confirmation: "El campo Confirmar Contraseña no coindice con el campo Contraseña"

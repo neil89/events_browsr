@@ -85,6 +85,7 @@ App.User = DS.Model.extend( {
 
     if (errors !== undefined) {
       errors.forEach(function (err) {
+console.log("Error de password: -" + err + "-");
         arr.push(I18n.t("errors.password." + err, { min: 8 }));
       });
       this.set('passwordError', arr);

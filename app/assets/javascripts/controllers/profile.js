@@ -5,7 +5,7 @@ App.AppProfileController = Ember.ObjectController.extend( {
 
   id: null,
   
-  prevModel
+  //prevModel
 
   data: null,
 
@@ -23,7 +23,7 @@ App.AppProfileController = Ember.ObjectController.extend( {
   cancelEdition: function() {
     this.set('isEditing', false);
 
-    //this.set('model', App.User.find({id: this.get('id')}));
+console.log("Errores en surname: *" + this.get('model.surnameError') + "*");
 
     var transaction = this.transaction;
     if (transaction) {

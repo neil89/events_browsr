@@ -31,8 +31,10 @@ class UsersController < ApplicationController
     profile_user = login(u.email, params[:user][:password])
 
     if u == profile_user  # params[:user][:password] is a valid password, so the update is performed
+      logger.debug "**"
+      logger.debug "  OK >> El usuario profile es el mismo que u"
       if u.update_attributes(params[:user])
-        respond_with u, api_template: :general_user, status: :ok#status: :no_content
+        respond_with u, api_template: :general_user, status: :no_content
       else
         logger.debug "**"
         logger.debug "**"
@@ -40,8 +42,11 @@ class UsersController < ApplicationController
         logger.debug "**"
         logger.debug "Errores: #{u.errors.messages.to_json}"
         logger.debug "**"
-        respond_with u, api_template: :unprocessable_user, root: :errors, status: :ok
+        respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user
       end
+    else
+      u.errors.add(:password, "wrong");
+      respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user, location: nil
     end
   end
 
