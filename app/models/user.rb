@@ -36,9 +36,5 @@ class User
   def passwords_should_match
     errors.add(:password_confirmation, "confirmation") unless password == password_confirmation
   end
-
-  def wrong_password
-    errors.add(:password, "wrong")
-  end
 end
 

@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
   self.responder = ActsAsApi::Responder
   respond_to :json
 
-  def new
-  end
-
   def create
     u = login(params[:session][:email], params[:session][:password])
 
@@ -24,8 +21,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
-    logout
-  end
+  # def destroy
+  #   logout
+  # end
    
 end

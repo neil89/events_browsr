@@ -15,6 +15,10 @@ App.User = DS.Model.extend( {
   passwordError: null,
   passwordConfirmationError: null,
 
+  becameError: function() {
+    alert ("BecameError!");
+  },
+
   becameInvalid: function(errors) {
     this.nameErrorTranslation(errors.errors.name);
     this.surnameErrorTranslation(errors.errors.surname);

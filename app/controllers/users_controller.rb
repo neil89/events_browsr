@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       end
     else
       u.errors.add(:password, "wrong");
-      respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user, location: nil
+      respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user
     end
   end
 

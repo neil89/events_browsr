@@ -34,7 +34,18 @@ console.log("Errores en surname: *" + this.get('model.surnameError') + "*");
 
   updateUser: function() {
     this.set('model.password_confirmation', this.get('model.password'));
+/*
+    var self = this;
+    var updateUser = this.get('model');
 
+    updateUser.one('didError', function() {
+      Ember.run.next(function() {
+        //self.send('signedUpRedirect');
+        alert("Modelo con error!");
+        console.log("modelo con error!!");
+      });
+    });
+*/
     this.transaction.commit();
     this.transaction = undefined;
     this.cancelEdition();
