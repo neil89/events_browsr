@@ -6,7 +6,7 @@ App.Router.map( function() {
     this.resource('events', { path: '/events' }, function() {
       this.route('index', { path: '/' });
       this.route('new', { path: '/new' });
-      this.route('own', { path: '/:user_id' });
+      this.route('own', { path: '/own' });
     });
     this.route('profile', { path: '/profile' });
   });

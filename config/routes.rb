@@ -1,5 +1,6 @@
 Eventia::Application.routes.draw do
   resources :users
+  resources :events
   resources :sessions, only: [:new, :create, :destroy]
   root :to => 'application#index'
   get '/*path' => 'application#index'

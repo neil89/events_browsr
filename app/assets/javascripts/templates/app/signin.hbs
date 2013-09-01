@@ -14,7 +14,6 @@
 
 <form {{action login on="submit"}}>
   <section class="sign-in-form">
-
     <div {{bindAttr class=":control-group emailError:error"}}>
       <label for="email-id-sign-in" class="control-label">Email</label>
       {{view Ember.TextField valueBinding="email" id="email-id-sign-in"}}

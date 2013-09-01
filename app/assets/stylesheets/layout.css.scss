@@ -169,3 +169,33 @@ input[type="radio"]
     margin: 0 15px;
   }
 }
+
+.events-list-section
+{
+  width: 90%;
+  margin: 0 auto;
+  ul
+  {
+    margin: 0;
+    padding: 0;
+  }
+  li 
+  {
+    span
+    {
+      margin-top: 4px;
+    }
+  }
+}
+
+.events-list
+{
+  padding-bottom: 15px;
+}
+
+.event-button-box
+{
+  text-align: center;
+  width: 120px;
+  display: inline-block;
+}

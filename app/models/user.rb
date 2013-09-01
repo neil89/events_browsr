@@ -36,5 +36,7 @@ class User
   def passwords_should_match
     errors.add(:password_confirmation, "confirmation") unless password == password_confirmation
   end
+
+  has_many :events
 end
 

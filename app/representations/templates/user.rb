@@ -9,6 +9,10 @@ module Templates::User
       response.add :age
     end
 
+    api_accessible :general_user_with_events, :extend => :general_user do |response|
+      response.add :event_ids
+    end
+
     api_accessible :unprocessable_user, :extend => :general_user  do |response|
       response.add :password
       response.add :password_confirmation

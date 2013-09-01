@@ -34,9 +34,14 @@
   }
 }
 
-.control-label
+.bold
 {
   font-weight: bold;
+}
+
+.control-label
+{
+  @extend .bold;
 }
 
 .nav li
@@ -48,4 +53,19 @@
 {
   cursor: not-allowed;
   color: #888;
+}
+
+.event-title
+{
+  @extend .bold;
+  &:hover
+  {
+    text-shadow: 0 0 8px #52A8EC, 0 0 1px #52A8EC;
+    transition: text-shadow 0.25s linear 0s;
+  }
+}
+
+.events-list
+{
+  list-style-type: none
 }

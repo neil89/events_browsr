@@ -3,6 +3,6 @@ App.Adapter = DS.RESTAdapter.extend( {
 });
 
 App.Store = DS.Store.extend( {
-  revision: 12,
+  revision: 13,
   adapter:  App.Adapter.create()
 });

@@ -1,6 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
-# require 'simple_cov'
-# SimpleCov.start
+require 'simple_cov'
+SimpleCov.start
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'

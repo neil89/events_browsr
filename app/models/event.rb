@@ -17,4 +17,6 @@ class Event
   validates :place, length: { minimum: 3, message: "length" }
 
   validates :description, length: { minimum: 8, message: "length" }
+
+  belongs_to :user
 end

@@ -1,3 +1,8 @@
+App.Adapter.map(
+  'App.User', {
+    events: { embedded: 'load' }
+});
+
 App.User = DS.Model.extend( {
   name: DS.attr('string'),
   surname: DS.attr('string'),
@@ -6,6 +11,7 @@ App.User = DS.Model.extend( {
   age: DS.attr('number'),
   password: DS.attr('string'),
   password_confirmation: DS.attr('string'),
+  events: DS.hasMany('App.Event', { embedded: 'load' }),
 
   nameError: null,
   surnameError: null,

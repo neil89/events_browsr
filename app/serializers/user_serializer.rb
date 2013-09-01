@@ -7,4 +7,6 @@ class UserSerializer < ActiveModel::Serializer
              :age,
              :password,
              :password_confirmation
+             
+  has_many :events, embed: :ids
 end             

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     u = User.find(params[:id])
 
     if u
-      respond_with u, :api_template => :general_user, status: :ok
+      respond_with u, :api_template => :general_user_with_events, status: :ok
     else
       respond_with nil, status: :not_found
     end
