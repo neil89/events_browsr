@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   # GET /events.json
   def index
-    # render json: Event.all
     e = Event.all
     respond_with e, :api_template => :general_event, status: :ok
   end

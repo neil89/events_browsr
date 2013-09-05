@@ -58,18 +58,12 @@ describe UsersController do
       it "should return errors as JSON" do
         json = response.body
 
-        parse_json(json, "errors/name").should include("blank", "length")
-
-        parse_json(json, "errors/surname").should include("blank", "length")
-
-        parse_json(json, "errors/email").should include("blank", "invalid")
-
-        parse_json(json, "errors/gender").should include("blank", "invalid")
-
-        parse_json(json, "errors/age").should include("blank", "range")
-
-        parse_json(json, "errors/password").should include("blank", "length")
-
+        parse_json(json, "errors/name").should                  include("blank", "length")
+        parse_json(json, "errors/surname").should               include("blank", "length")
+        parse_json(json, "errors/email").should                 include("blank", "invalid")
+        parse_json(json, "errors/gender").should                include("blank", "invalid")
+        parse_json(json, "errors/age").should                   include("blank", "range")
+        parse_json(json, "errors/password").should              include("blank", "length")
         parse_json(json, "errors/password_confirmation").should include "blank"
       end
     end
@@ -140,29 +134,4 @@ describe UsersController do
       end
     end
   end
-
-
-  #   context "invalid attributes" do 
-  #     it "locates the requested @contact" do 
-  #       put :update, id: @contact, contact: Factory.attributes_for(:invalid_contact) 
-  #       assigns(:contact).should eq(@contact) 
-  #     end 
-
-  #     it "does not change @contact's attributes" do 
-  #       put :update, id: @contact, contact: Factory.attributes_for(:contact, firstname: "Larry", lastname: nil) 
-  #       @contact.reload 
-  #       @contact.firstname.should_not eq("Larry") 
-  #       @contact.lastname.should eq("Smith") 
-  #     end 
-
-  #     it "re-renders the edit method" do 
-  #       put :update, id: @contact, contact: Factory.attributes_for(:invalid_contact) 
-  #       response.should render_template :edit 
-  #     end 
-  #   end
-  # end
-
-
-
-
 end

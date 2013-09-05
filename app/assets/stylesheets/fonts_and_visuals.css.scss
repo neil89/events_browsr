@@ -58,6 +58,7 @@
 .event-title
 {
   @extend .bold;
+  color: #333;
   &:hover
   {
     text-shadow: 0 0 8px #52A8EC, 0 0 1px #52A8EC;
@@ -68,4 +69,9 @@
 .events-list
 {
   list-style-type: none
+}
+
+.days-left
+{
+  color: #808080;
 }

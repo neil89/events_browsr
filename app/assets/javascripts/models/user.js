@@ -13,6 +13,10 @@ App.User = DS.Model.extend( {
   password_confirmation: DS.attr('string'),
   events: DS.hasMany('App.Event', { embedded: 'load' }),
 
+  fullName: function() {
+    return this.get('name') + " " + this.get('surname');
+  }.property('this.name', 'this.surname'),
+
   nameError: null,
   surnameError: null,
   emailError: null,
@@ -26,6 +30,7 @@ App.User = DS.Model.extend( {
   },
 
   becameInvalid: function(errors) {
+    alert ("BecameInvalid!");
     this.nameErrorTranslation(errors.errors.name);
     this.surnameErrorTranslation(errors.errors.surname);
     this.emailErrorTranslation(errors.errors.email);
