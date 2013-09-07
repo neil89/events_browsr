@@ -1,4 +1,8 @@
 App.AppIndexRoute = Ember.Route.extend( {
+  model: function() {
+    return App.User.find();
+  },
+
   events: {
     goToSignUp: function() {
       this.transitionTo('app.signup');

@@ -3,9 +3,16 @@
 {{debug}}
 {{log ownEvents}}
 
-Eventos:
+Eventos (model):
 <ul>
-  {{#each e in ownEvents}}
+  {{#each e in model.myEvents}}
+  <li>{{e.title}}</li>
+  {{/each}}
+</ul>
+
+Eventos (notMine):
+<ul>
+  {{#each e in notMine.notMyEvents}}
   <li>{{e.title}}</li>
   {{/each}}
 </ul>

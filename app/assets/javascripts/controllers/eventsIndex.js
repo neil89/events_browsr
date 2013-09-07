@@ -19,6 +19,7 @@ App.EventsIndexController = Ember.ArrayController.extend( {
     today.setMilliseconds(0);
     var flag = false;
     var todayEvents = [];
+    var self = this;
 
     events.toArray().forEach(function(ev) {
       var date = ev.get('date');
@@ -31,20 +32,18 @@ App.EventsIndexController = Ember.ArrayController.extend( {
       if (days === 0) {
         todayEvents.push(ev);
       }
+      else {
+        var arr = self.get('comingEvents');
+        arr.push(ev);
+        self.set('comingEvents', arr);
+      }
+
     });
 
     return todayEvents;
   }.property('model'),
 
-  owner: function() {
-    var userId = this.get('controllers.app.model.id');
-    var flag = false;
-
-    if (userId == this.get('currentEvent.user.id'))
-      flag = true;
-
-    return flag;
-  }.property('model'),
+  comingEvents: [],
 
   currentEvent: undefined
 });
