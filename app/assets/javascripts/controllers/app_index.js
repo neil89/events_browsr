@@ -1,9 +1,7 @@
 App.AppIndexController = Ember.ObjectController.extend( {
   registeredUsers: function() {
-    var n = this.get('model').toArray().length;
-
-    return n;
-  }.property('model'),
+    return this.get('model.length');
+  }.property('model.length'),
 
   signInAction: function() {
     this.send('goToSignIn');

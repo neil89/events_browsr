@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     u = User.all
 
-    respond_with u, :api_template => :general_user, status: :ok
+    respond_with u, :api_template => :user_id, status: :ok
   end
 
   # GET /users/1.json

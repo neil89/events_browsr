@@ -4,7 +4,10 @@ class EventsController < ApplicationController
 
   # GET /events.json
   def index
-    e = params[:title].blank? ? Event.all : Event.where(title: params[:title])
+    e = params[:user_id].blank? ? Event.all : Event.where(user_id: params[:user_id])
+
+logger.debug "**"
+logger.debug "  params[:user_id] -> #{params[:user_id]}" 
 
     respond_with e, :api_template => :general_event, status: :ok
   end

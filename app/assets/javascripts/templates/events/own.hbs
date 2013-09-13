@@ -1,18 +1,17 @@
 <h1>Mis eventos</h1>
 
-{{debug}}
-{{log ownEvents}}
+<section class="events-list-section">
+  {{#if getTodayEvents}}
+    {{#with getTodayEvents as list}}
+      <h3>Eventos de hoy</h3>
+      {{partial "eventsList"}}
+    {{/with}}
+  {{/if}}
 
-Eventos (model):
-<ul>
-  {{#each e in model.myEvents}}
-  <li>{{e.title}}</li>
-  {{/each}}
-</ul>
+  {{#with comingEvents as list}}
+    <h3>Próximos eventos</h3>
+    {{partial "eventsList"}}
+  {{/with}}
+</section>
 
-Eventos (notMine):
-<ul>
-  {{#each e in notMine.notMyEvents}}
-  <li>{{e.title}}</li>
-  {{/each}}
-</ul>
+{{partial "eventsModal"}}

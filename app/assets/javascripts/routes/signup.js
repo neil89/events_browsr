@@ -1,4 +1,4 @@
-App.AppSignupRoute = Ember.Route.extend( {
+App.AppSignupRoute = App.NotAuthenticatedRoute.extend( {
   setupController: function(controller, model) {
     controller.reset();
   },

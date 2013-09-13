@@ -26,7 +26,10 @@ Ember.Handlebars.helper('daysLeft', function(date) {
       str += "n";
     }
 
-    str += " " + days + " días";
+    str += " " + days + " día";
+
+    if (days > 1)
+      str += "s";
   }
 
   return str;

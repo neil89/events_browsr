@@ -38,5 +38,7 @@ class User
   end
 
   has_many :events
+
+  has_and_belongs_to_many :attendings, class_name: "Event" , inverse_of: :attendances
 end
 

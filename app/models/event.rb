@@ -19,4 +19,6 @@ class Event
   validates :description, length: { minimum: 8, message: "length" }
 
   belongs_to :user
+
+  has_and_belongs_to_many :attendances, class_name: "User" , inverse_of: :attendings
 end

@@ -15,107 +15,100 @@ App.User = DS.Model.extend( {
 
   fullName: function() {
     return this.get('name') + " " + this.get('surname');
-  }.property('this.name', 'this.surname'),
+  }.property('name', 'surname'),
 
-  nameError: null,
-  surnameError: null,
-  emailError: null,
-  genderError: null,
-  ageError: null,
-  passwordError: null,
-  passwordConfirmationError: null,
 
-  becameError: function() {
-    alert ("BecameError!");
-  },
-
-  becameInvalid: function(errors) {
-    alert ("BecameInvalid!");
-    this.nameErrorTranslation(errors.errors.name);
-    this.surnameErrorTranslation(errors.errors.surname);
-    this.emailErrorTranslation(errors.errors.email);
-    this.genderErrorTranslation(errors.errors.gender);
-    this.ageErrorTranslation(errors.errors.age);
-    this.passwordErrorTranslation(errors.errors.password);
-    this.passwordConfirmationErrorTranslation(errors.errors.password_confirmation);
-  },
-
-  nameErrorTranslation: function(errors) {
+  nameError: function() {
+    var errors = this.get('errors.name');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.name." + err, { min: 3, max: 20 }));
       });
-      this.set('nameError', arr);
     }
-  },
 
-  surnameErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.name'),
+
+
+  surnameError: function() {
+    var errors = this.get('errors.surname');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.surname." + err, { min: 3, max: 20 }));
       });
-      this.set('surnameError', arr);
     }
-  },
 
-  emailErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.surname'),
+
+  emailError: function() {
+    var errors = this.get('errors.email');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.email." + err));
       });
-      this.set('emailError', arr);
     }
-  },
 
-  genderErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.email'),
+
+  genderError: function() {
+    var errors = this.get('errors.gender');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.gender." + err));
       });
-      this.set('genderError', arr);
     }
-  },
 
-  ageErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.gender'),
+
+  ageError: function() {
+    var errors = this.get('errors.age');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.age." + err, { min: 18, max: 120 }));
       });
-      this.set('ageError', arr);
     }
-  },
 
-  passwordErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.age'),
+
+  passwordError: function() {
+    var errors = this.get('errors.password');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
 console.log("Error de password: -" + err + "-");
         arr.push(I18n.t("errors.password." + err, { min: 8 }));
       });
-      this.set('passwordError', arr);
     }
-  },
 
-  passwordConfirmationErrorTranslation: function(errors) {
+    return arr;
+  }.property('errors.password'),
+
+  passwordConfirmationError: function() {
+    var errors = this.get('errors.password_confirmation');
     var arr = [];
 
-    if (errors !== undefined) {
+    if (errors) {
       errors.forEach(function (err) {
         arr.push(I18n.t("errors.password_confirmation." + err));
       });
-      this.set('passwordConfirmationError', arr);
     }
-  }
+
+    return arr;
+  }.property('errors.password_confirmation')
 
 });

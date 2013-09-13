@@ -10,9 +10,14 @@ App.AppIndexRoute = Ember.Route.extend( {
 
     goToSignIn: function() {
       this.transitionTo('app.signin');
-    },
-    error: function(reason, transition) {
-      console.log("Evento error en appIndex");
+    }
+  },
+
+  redirect: function() {
+    var loggedIn = this.controllerFor('app').get('loggedIn');
+
+    if (loggedIn) {
+      this.transitionTo('app.home');
     }
   }
 });

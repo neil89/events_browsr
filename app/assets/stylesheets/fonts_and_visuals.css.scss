@@ -61,6 +61,7 @@
   color: #333;
   &:hover
   {
+    cursor: pointer;
     text-shadow: 0 0 8px #52A8EC, 0 0 1px #52A8EC;
     transition: text-shadow 0.25s linear 0s;
   }

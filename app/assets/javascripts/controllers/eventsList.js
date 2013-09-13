@@ -1,4 +1,4 @@
-App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListController.extend( {
+App.AppEventsListController = Ember.ArrayController.extend( {
   needs: ['app'],
 
   itemController: 'event',
