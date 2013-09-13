@@ -1,0 +1,52 @@
+<header class="navbar">
+  <div class="navbar-inner">
+    {{#linkTo "app" tagName="a" class="brand brand-title"}}
+      Eventia
+    {{/linkTo}}
+    {{#if loggedIn}}
+      <ul class="nav">
+        {{#linkTo "app.home" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Inicio</a>
+        {{/linkTo}}
+        {{#linkTo "events.index" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Listado de eventos</a>
+        {{/linkTo}}
+        {{#linkTo "events.new" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Añadir evento</a>
+        {{/linkTo}}
+        {{#linkTo "events.own" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Mis eventos</a>
+        {{/linkTo}}
+      </ul>
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a href="app" class="dropdown-toggle" data-toggle="dropdown">
+            Bienvenid@, {{model.email}} <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            {{#linkTo "app.profile" tagName="li"}}
+              <a {{bindAttr href="view.href"}}>Mi perfil</a>
+            {{/linkTo}}
+            {{#linkTo "app" tagName="li"}}
+              <a {{bindAttr href="view.href"}}>Cerrar sesión</a>
+            {{/linkTo}}
+          </ul>
+        </li>
+      </ul>
+    {{else}}
+      <ul class="nav">
+        {{#linkTo "app.signup" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Registrarme</a>
+        {{/linkTo}}
+        {{#linkTo "app.signin" tagName="li"}}
+          <a {{bindAttr href="view.href"}}>Entrar</a>
+        {{/linkTo}}
+      </ul>
+    {{/if}}
+  </div>
+</header>
+
+<section class="main-content">
+  {{outlet}}
+</section>

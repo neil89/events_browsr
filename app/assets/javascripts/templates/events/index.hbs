@@ -1,0 +1,17 @@
+<h1>Listado de eventos</h1>
+
+<section class="events-list-section">
+  {{#if getTodayEvents}}
+    {{#with getTodayEvents as list}}
+      <h3>Eventos de hoy</h3>
+      {{partial "eventsList"}}
+    {{/with}}
+  {{/if}}
+
+  {{#with comingEvents as list}}
+    <h3>Próximos eventos</h3>
+    {{partial "eventsList"}}
+  {{/with}}
+</section>
+
+{{partial "eventsModal"}}

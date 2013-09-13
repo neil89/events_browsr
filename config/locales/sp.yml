@@ -1,0 +1,26 @@
+sp:
+  hello: "Hola mundo"
+  errors:
+    name:
+        blank: "El campo Nombre es obligatorio"
+        length: "El campo Nombre debe tener entre {{min}} y {{max}} caracteres"
+    surname:
+        blank: "El campo Apellido es obligatorio"
+        length: "El campo Apellido debe tener entre {{min}} y {{max}} caracteres"
+    email:
+        blank: "El campo Email es obligatorio"
+        invalid: "El campo Email no tiene una dirección válida"
+    gender:
+        blank: "El campo Sexo es obligatorio"
+        invalid: "El Sexo debe ser masculino o femenino"
+    age:
+        blank: "El campo Edad es obligatorio"
+        invalid: "El campo Edad debes ser un número"
+        range: "El campo Edad debe ser más de {{min}} y menos de {{max}}"
+    password:
+        blank: "El campo Contraseña es obligatorio"
+        length: "El campo Contraseña debe tener {{min}} caracteres o más"
+        wrong: "La Contraseña no es correcta"
+    password_confirmation:
+        blank: "El campo Confirmar Contraseña es obligatorio"
+        confirmation: "El campo Confirmar Contraseña no coindice con el campo Contraseña"

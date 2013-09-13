@@ -1,0 +1,78 @@
+#registered-users-index
+{
+  font-size: 2em;
+}
+
+#register-section-index, #login-section-index
+{
+  font-size: 1.25em;
+}
+
+.index-section
+{
+  button
+  {
+    font-size: 0.95em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+}
+
+.sign-up-form
+{
+  .radio-button-label
+  {
+    font-weight: normal;
+  }
+}
+
+.profile-form
+{
+  .radio-button-label
+  {
+    font-weight: normal;
+  }
+}
+
+.bold
+{
+  font-weight: bold;
+}
+
+.control-label
+{
+  @extend .bold;
+}
+
+.nav li
+{
+  cursor: pointer;
+}
+
+.disabled
+{
+  cursor: not-allowed;
+  color: #888;
+}
+
+.event-title
+{
+  @extend .bold;
+  color: #333;
+  &:hover
+  {
+    cursor: pointer;
+    text-shadow: 0 0 8px #52A8EC, 0 0 1px #52A8EC;
+    transition: text-shadow 0.25s linear 0s;
+  }
+}
+
+.events-list
+{
+  list-style-type: none
+}
+
+.days-left
+{
+  color: #808080;
+}
