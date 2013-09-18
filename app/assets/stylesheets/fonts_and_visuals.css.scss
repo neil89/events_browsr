@@ -1,3 +1,35 @@
+form 
+{ 
+  input:required 
+  {
+    border-bottom: 2px solid $inputRequiredColor;
+    box-shadow: 0 0 4px 1px $inputRequiredColor;   
+    &:valid
+    {
+      border: 1px solid $inputRightColor;
+      box-shadow: 0 0 0 #FFF;
+    }  
+    &:focus
+    {
+      &:invalid
+      {
+        border-bottom: 2px solid $inputWrongColor;
+        box-shadow: 0 0 10px 2px $inputWrongColor;
+      }
+
+      &:valid
+      {
+        border-bottom: 2px solid $inputRightColor;
+        box-shadow: 0 0 10px 2px $inputRightColor;     
+      }
+    }
+
+    transition: border 0.25s linear 0s;
+    transition: box-shadow 0.25s linear 0s;
+  }
+}
+
+
 #registered-users-index
 {
   font-size: 2em;

@@ -80,8 +80,5 @@ console.log("CAPTURADO Nombre: " + uName +
 
     this.transaction.commit();
     this.transaction = null;
-
-    alert("errors.errors: " + this.get('model.errors.errors.name'));
-    alert("errors: " + this.get('model.errors.name'));
   },
 });

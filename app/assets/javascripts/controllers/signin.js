@@ -43,23 +43,18 @@ App.AppSigninController = Ember.ObjectController.extend( {
     var self = this;
 
     $.post('/sessions.json', data)
-    .then(function(response) {
-      if (response.errors) {
-        self.set('controllers.app.loggedIn', false);
-        self.set('userId', null);
-        self.set('loginError', response.errors.login);
-        self.set('nextFlagInvalidAuthentication', true);
-        self.reset();
-        alert("Errores: " + response.errors.login);
-      }
-      else {
-        self.set('controllers.app.loggedIn', true);
-        self.set('controllers.app.model', App.User.find(response.session.id));
-        self.set('userId', response.session.id);
-        self.set('loginError', null);
-        self.send('goToHome');
-        alert("Correcto - id = *" + response.session.id + "*");
-      }
+    .then(function(doneResponse) {    // HTTP status code 20x, success
+      self.set('controllers.app.loggedIn', true);
+      self.set('controllers.app.model', App.User.find(doneResponse.session.id));
+      self.set('userId', doneResponse.session.id);
+      self.set('loginError', null);
+      self.send('goToHome');
+    }, function(failResponse) {       // HTTP status code 40x or 50x, error
+      self.set('controllers.app.loggedIn', false);
+      self.set('userId', null);
+      self.set('loginError', failResponse.responseJSON.errors.login);
+      self.set('nextFlagInvalidAuthentication', true);
+      self.reset();
     });
   }
 });

@@ -1,6 +1,7 @@
 App.Adapter.map(
   'App.User', {
-    events: { embedded: 'load' }
+    events: { embedded: 'load' },
+    attendances: { embedded: 'load' }
 });
 
 App.User = DS.Model.extend( {
@@ -11,7 +12,12 @@ App.User = DS.Model.extend( {
   age: DS.attr('number'),
   password: DS.attr('string'),
   password_confirmation: DS.attr('string'),
-  events: DS.hasMany('App.Event', { embedded: 'load' }),
+  events: DS.hasMany('App.Event',
+                     { inverse: 'user' },
+                     { embedded: 'load' }),
+  attendances: DS.hasMany('App.Attender',
+                          { inverse: 'attendanceOf' },
+                          { embedded: 'load' }),
 
   fullName: function() {
     return this.get('name') + " " + this.get('surname');

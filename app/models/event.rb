@@ -8,6 +8,7 @@ class Event
 
   acts_as_api
   include Templates::Event
+  include Templates::Attender
 
   validates :title, presence: { message: "blank" }, length: { minimum: 3, message: "length" }
 
@@ -20,5 +21,11 @@ class Event
 
   belongs_to :user
 
-  has_and_belongs_to_many :attendances, class_name: "User" , inverse_of: :attendings
+  has_many :attendings, class_name: "Attender", inverse_of: :attendingTo
+
+  # def orderedDate
+    
+  # end
+
+  # has_and_belongs_to_many :attendances, class_name: "User" , inverse_of: :attendings
 end

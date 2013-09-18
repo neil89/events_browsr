@@ -11,6 +11,7 @@ module Templates::Event
 
     api_accessible :general_event, :extend => :embedded_event do |response|
       response.add :user_id
+      response.add :attendings, :template => :attender_event
     end
   end
 end

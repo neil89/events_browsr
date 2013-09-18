@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events.json
   def index
+    #e = params[:user_id].blank? ? Event.all.order_by(:date => "desc") : Event.where(user_id: params[:user_id])
     e = params[:user_id].blank? ? Event.all : Event.where(user_id: params[:user_id])
 
 logger.debug "**"
@@ -33,6 +34,5 @@ logger.debug "  params[:user_id] -> #{params[:user_id]}"
       respond_with nil, status: :not_found
     end
   end
-
 
 end

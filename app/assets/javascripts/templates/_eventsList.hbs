@@ -1,15 +1,16 @@
 <ul>
   {{#each e in list itemController="event"}}
     <li class="events-list">
-      <span class="span6">
+      <span class="event-label span6">
         <a data-toggle="modal" class="span4 event-title" {{action setCurrentEvent e target="controller"}}>{{e.title}}</a>
-        <span class="event-attending">Asistiran * personas</span>
+        <span class="event-attending">{{beautifyAttendingUsers e.attendingUsers}}
+        </span>
       </span>
       <span class="event-button-box">
         {{#if isAttending}}
-          <button class="btn btn-warning"><i class="icon-minus icon-white"></i> No asistiré</button>
+          <button class="btn btn-warning" {{action actionAttending}}><i class="icon-minus icon-white"></i> No asistiré</button>
         {{else}}
-          <button class="btn btn-success"><i class="icon-plus icon-white"></i> Asistiré</button>
+          <button class="btn btn-success" {{action actionAttending}}><i class="icon-plus icon-white"></i> Asistiré</button>
         {{/if}}
       </span>
 

@@ -49,11 +49,11 @@ class UsersController < ApplicationController
         logger.debug "**"
         logger.debug "Errores: #{u.errors.messages.to_json}"
         logger.debug "**"
-        respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user
+        respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_entity
       end
     else
       u.errors.add(:password, "wrong");
-      respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_user
+      respond_with u, api_template: :unprocessable_user, root: :errors, status: :unprocessable_entity
     end
   end
 

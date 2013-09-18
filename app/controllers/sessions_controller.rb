@@ -11,12 +11,7 @@ class SessionsController < ApplicationController
       u = User.new();
       u.id = nil;
       respond_with u, api_template: :login_failed,
-                      ###############################################
-                      ## SI UTILIZO ALGÚN CÓDIGO HTTP DEL TIPO 4xx ##
-                      ## EL JSON DEVUELTO (parámetro 'response') NO ##
-                      ## SE TIENE EN CUENTA EN LA FUNCIÓN post     ##
-                      ###############################################
-                      #status: :unauthorized,
+                      status: :unauthorized,
                       root: :errors
     end
   end

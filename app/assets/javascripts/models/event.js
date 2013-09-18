@@ -1,6 +1,7 @@
 App.Adapter.map(
   'App.Event', {
-    user: { embedded: 'load' }
+    user: { embedded: 'load' },
+    attendings: { embedded: 'load' }
 });
 
 App.Event = DS.Model.extend( {
@@ -8,6 +9,10 @@ App.Event = DS.Model.extend( {
   date: DS.attr('string'),
   place: DS.attr('string'),
   description: DS.attr('string'),
-  age: DS.attr('number'),
-  user: DS.belongsTo('App.User', { embedded: 'load' })
+  user: DS.belongsTo('App.User',
+                     { inverse: 'events' },
+                     { embedded: 'load' }),
+  attendings: DS.hasMany('App.Attender',
+                          { inverse: 'attendingTo' },
+                          { embedded: 'load' })
 });
