@@ -10,7 +10,11 @@
 
   {{#with comingEvents as list}}
     <h3>Próximos eventos</h3>
-    {{partial "eventsList"}}
+    {{#if comingEvents}}
+      {{partial "eventsList"}}
+    {{else}}
+      No hay ningún evento aún. {{#linkTo events.new}}¿Quieres crear uno?{{/linkTo}}
+    {{/if}}
   {{/with}}
 </section>
 

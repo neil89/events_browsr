@@ -1,5 +1,9 @@
 <h1>Mis eventos</h1>
 
+{{#if flagEventCreated}}
+  <div class="alert alert-success">¡Tu evento se ha creado correctamente!</div>
+{{/if}}
+
 <section class="events-list-section">
   {{#if getTodayEvents}}
     {{#with getTodayEvents as list}}
@@ -8,10 +12,16 @@
     {{/with}}
   {{/if}}
 
-  {{#with comingEvents as list}}
-    <h3>Próximos eventos</h3>
-    {{partial "eventsList"}}
-  {{/with}}
+  <h3>Próximos eventos</h3>
+  
+  {{#if comingEvents}}
+    {{#with comingEvents as list}}
+      {{partial "eventsList"}}
+    {{/with}}
+  {{else}}
+    No hay ningún evento aún. {{#linkTo events.new}}¿Quieres crear uno?{{/linkTo}}
+  {{/if}}
+
 </section>
 
 {{partial "eventsModal"}}

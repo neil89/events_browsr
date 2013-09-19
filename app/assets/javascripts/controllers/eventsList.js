@@ -3,6 +3,7 @@ App.AppEventsListController = Ember.ArrayController.extend( {
 
   itemController: 'event',
 
+/*
   sortFunction: function(x, y) {
     if (x == y)
       return 0;
@@ -12,6 +13,7 @@ App.AppEventsListController = Ember.ArrayController.extend( {
 
     return dateX < dateY ? -1 : 1;
   },
+*/
   sortProperties: ['date'],
   sortAscending: true,
 

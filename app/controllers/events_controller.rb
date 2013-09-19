@@ -35,4 +35,15 @@ logger.debug "  params[:user_id] -> #{params[:user_id]}"
     end
   end
 
+  # POST /events.json
+  def create
+    e = Event.new(params[:event])
+
+    if e.save
+      respond_with e, :api_template => :general_event, status: :created
+    else
+      respond_with e, :api_template => :general_event, status: :unprocessable_entity
+    end
+  end
+
 end

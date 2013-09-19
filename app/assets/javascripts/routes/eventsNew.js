@@ -1,5 +1,12 @@
-App.EventsNewRoute = Ember.Route.extend( {//App.AuthenticatedRoute.extend( {
+App.EventsNewRoute = App.AuthenticatedRoute.extend( {
   setupController: function(controller, model) {
-    controller.createDaysArray();
+    controller.reset();
+  },
+
+  events: {
+    ownEventsRedirect: function() {
+      this.controllerFor('events.own').set('nextFlagEventCreated', true);
+      this.transitionTo('events.own');
+    }
   }
 });

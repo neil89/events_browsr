@@ -32,7 +32,13 @@ App.EventsNewController = Ember.ObjectController.extend( {
     2016
   ],
 
-  createDaysArray: function() {
+  adjustDays: function() {
+    if (this.get('curDay') > this.get('months')[this.get('curMonth')].days) {
+      this.set('curDay', this.get('months')[this.get('curMonth')].days);
+    }
+  }.observes('curMonth', 'curDay'),
+
+  reset: function() {
     var days = [];
     var count = 1;
 
@@ -41,13 +47,20 @@ App.EventsNewController = Ember.ObjectController.extend( {
     }
 
     this.set('days', days);
-  },
 
-  adjustDays: function() {
-    if (this.get('curDay') > this.get('months')[this.get('curMonth')].days) {
-      this.set('curDay', this.get('months')[this.get('curMonth')].days);
-    }
-  }.observes('curMonth', 'curDay'),
+    this.set('title', "");
+    this.set('place', "");
+    this.set('description', "");
+
+    this.transaction = this.get('store').transaction();
+
+    var dummyEvent = this.transaction.createRecord
+    (
+      App.Event
+    );
+
+    this.set('model', dummyEvent);
+  },
 
   createEvent: function() {
     var eCurDay = parseInt(this.get('curDay'), 10);
@@ -68,10 +81,39 @@ App.EventsNewController = Ember.ObjectController.extend( {
     var ePlace =       this.get('place');
     var eDescription = this.get('description');
 
+    var userId = this.get('controllers.app.model.id');
+
 
 console.log("CAPTURADO Titulo: " + eTitle +
   ", Fecha: " + eDate +
   ", Lugar: " + ePlace +
   ", Descripción: " + eDescription);
+
+    this.transaction = this.get('store').transaction();
+
+    var newEvent = this.transaction.createRecord
+    (
+      App.Event,
+      {
+        title: eTitle,
+        date: eDate,
+        place: ePlace,
+        description: eDescription,
+        user: App.User.find(userId)
+      }
+    );
+
+    this.set('model', newEvent);
+
+    var self = this;
+
+    newEvent.one('didCreate', function() {
+      Ember.run.next(function() {
+        self.send('ownEventsRedirect');
+      });
+    });
+
+    this.transaction.commit();
+    this.transaction = null;
   }
 });
