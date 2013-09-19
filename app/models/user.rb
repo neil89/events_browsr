@@ -38,6 +38,7 @@ class User
     errors.add(:password_confirmation, "confirmation") unless password == password_confirmation
   end
 
+
   has_many :events
 
   has_many :attendances, class_name: "Attender", inverse_of: :attendanceOf

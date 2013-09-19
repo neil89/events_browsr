@@ -23,9 +23,10 @@ class Event
 
   has_many :attendings, class_name: "Attender", inverse_of: :attendingTo
 
-  # def orderedDate
-    
-  # end
+  def formatStringDate
+    @date = self.date
+    return @date.at(6..9) + @date.at(3..4) + @date.at(0..1)
+  end
 
   # has_and_belongs_to_many :attendances, class_name: "User" , inverse_of: :attendings
 end

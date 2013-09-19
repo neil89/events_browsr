@@ -1,1 +1,78 @@
 <h1>Nuevo evento</h1>
+
+{{!--}}
+{{#each e in nameError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in surnameError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in emailError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in genderError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in ageError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in passwordError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+
+{{#each e in passwordConfirmationError}}
+  <div class="alert alert-danger">{{e}}</div>
+{{/each}}
+{{--}}
+
+<form {{action createEvent on="submit"}}>
+  <section class="create-event-form">
+    <section class="left-column">
+      <div {{bindAttr class=":control-group nameError:error"}}>
+        <label for="title-id-create-event" class="control-label">Título</label>
+        {{view App.TextField valueBinding="title" id="title-id-create-event" required=""}}        
+      </div>  
+      
+      <div {{bindAttr class=":control-group nameError:error"}}>
+        <label for="date-id-create-event" class="control-label">Fecha</label>
+        {{!view App.TextField valueBinding="date" id="date-id-create-event" required=""}}
+        {{view App.Select id="day-date-id-create-event" required=""
+           contentBinding="days"
+           optionValuePath="content"
+           optionLabelPath="content"
+           valueBinding="curDay"}}
+        {{view App.Select id="month-date-id-create-event" required=""
+           contentBinding="months"
+           optionValuePath="content.id"
+           optionLabelPath="content.month"
+           valueBinding="curMonth"}}
+        {{view App.Select id="year-date-id-create-event" required=""
+           contentBinding="years"
+           optionValuePath="content"
+           optionLabelPath="content"
+           valueBinding="curYear"}}
+      </div> 
+
+      <div {{bindAttr class=":control-group nameError:error"}}>
+        <label for="place-id-create-event" class="control-label">Lugar</label>
+        {{view App.TextField valueBinding="place" id="place-id-create-event"}}        
+      </div> 
+    </section>
+
+    <section class="right-column">
+      <div {{bindAttr class=":control-group ageError:error"}}>
+        <label for="description-id-create-event" class="control-label">Descripción</label>
+        {{!view App.TextField valueBinding="description" id="description-id-create-event"}}
+        {{textarea valueBinding="description" cols="25" rows="7" id="description-id-create-event"}}
+      </div>
+    </section>
+    <div class="submit-div">
+      <button type="submit" class="btn btn-primary">Continuar</button>
+    </div>
+  </section>
+</form>

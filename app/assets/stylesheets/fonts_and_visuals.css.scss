@@ -1,9 +1,9 @@
 form 
 { 
-  input:required 
+  input:required, select:required
   {
     border-bottom: 2px solid $inputRequiredColor;
-    box-shadow: 0 0 4px 1px $inputRequiredColor;   
+    box-shadow: 0 0 4px 1px $inputRequiredColor;
     &:valid
     {
       border: 1px solid $inputRightColor;
