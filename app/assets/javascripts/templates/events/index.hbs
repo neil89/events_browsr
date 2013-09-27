@@ -1,6 +1,7 @@
 <h1>Listado de eventos</h1>
 
-<section class="events-list-section">
+
+{{!-- <section class="events-list-section">
   {{#if getTodayEvents}}
     {{#with getTodayEvents as list}}
       <h3>Eventos de hoy</h3>
@@ -16,6 +17,37 @@
       No hay ningún evento aún. {{#linkTo events.new}}¿Quieres crear uno?{{/linkTo}}
     {{/if}}
   {{/with}}
+</section> --}}
+
+
+<section class="events-list-section">
+  {{#if getTodayEvents}}
+    {{#with getTodayEvents as list}}
+      <h3>Eventos de hoy</h3>
+      {{partial "eventsList"}}
+    {{/with}}
+  {{/if}}
+
+  {{#with paginatedEvents as list}}
+    <h3>Próximos eventos</h3>
+    {{#if paginatedEvents}}
+      {{partial "eventsList"}}
+    {{else}}
+      No hay ningún evento aún. {{#linkTo events.new}}¿Quieres crear uno?{{/linkTo}}
+    {{/if}}
+  {{/with}}
 </section>
+
+<div class="pagination pagination-centered">
+  <ul id="pagination-boxes" class="pagination">
+    <li {{action previousPage target="controller"}}><a href="#">&laquo;</a></li>
+    {{#each p in pagesIndex}}
+      <li {{action changePage p.id target="controller"}}><a href="#">{{p.label}}</a></li>
+    {{/each}}
+    <li {{action nextPage target="controller"}}><a href="#">&raquo;</a></li>
+  </ul>
+</div>
+
+
 
 {{partial "eventsModal"}}

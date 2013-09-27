@@ -4,8 +4,12 @@ class EventsController < ApplicationController
 
   # GET /events.json
   def index
-    e = params[:user_id].blank? ? Event.all.order_by(formatStringDate: "desc") : Event.where(user_id: params[:user_id])
-    #e = params[:user_id].blank? ? Event.all : Event.where(user_id: params[:user_id])
+    #@limit = params[:limit].to_i
+    #@skipping = (params[:page].to_i - 1) * @limit
+
+    #e = params[:user_id].blank? ? Event.all.order_by(formatStringDate: "desc") : Event.where(user_id: params[:user_id])
+    #e = params[:user_id].blank? ? Event.all.skip(@skipping).limit(@limit) : Event.where(user_id: params[:user_id])
+    e = params[:user_id].blank? ? Event.all : Event.where(user_id: params[:user_id])
 
 logger.debug "**"
 logger.debug "  params[:user_id] -> #{params[:user_id]}" 

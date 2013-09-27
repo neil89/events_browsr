@@ -1,34 +1,21 @@
 <h1>Nuevo evento</h1>
 
-{{!--}}
-{{#each e in nameError}}
+{{#each e in titleError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in surnameError}}
+{{#each e in dateError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in emailError}}
+{{#each e in placeError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in genderError}}
+{{#each e in descriptionError}}
   <div class="alert alert-danger">{{e}}</div>
 {{/each}}
 
-{{#each e in ageError}}
-  <div class="alert alert-danger">{{e}}</div>
-{{/each}}
-
-{{#each e in passwordError}}
-  <div class="alert alert-danger">{{e}}</div>
-{{/each}}
-
-{{#each e in passwordConfirmationError}}
-  <div class="alert alert-danger">{{e}}</div>
-{{/each}}
-{{--}}
 
 <form {{action createEvent on="submit"}}>
   <section class="create-event-form">

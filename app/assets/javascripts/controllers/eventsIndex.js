@@ -2,6 +2,88 @@ App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListCo
   needs: ['app'],
 
   itemController: 'event',
+
+  totalPages: 1,
+
+  pagesIndex: [],
+
+  currentPage: 0,
+
+  limit: 5,
+
+  paginatedEvents: undefined,
+
+  setupPagination: function() {
+    var totalPages = Math.ceil(this.get('model.length') / this.get('limit'));
+
+    this.set('totalPages', totalPages);
+
+    var pages = [];
+
+    for (var i = 0; i < totalPages; i++) {
+      var label = (i+1).toString();
+      pages.push({ id: i.toString(), label: label });
+    }
+
+    this.set('pagesIndex', pages);
+
+    this.set('currentPage', 0);
+  }.observes('model.length'),
+
+  changePage: function(p) {
+    this.set('currentPage', p);
+  },
+
+  updateClasses: function() {
+    var currentPageId = parseInt(this.get('pagesIndex')[this.get('currentPage')].id, 10);
+    var currentPageLabel = this.get('pagesIndex')[this.get('currentPage')].label;
+
+    // Setting class 'active' to current page
+    $("#pagination-boxes").children().each(function(idx) {
+      if( $(this).text() == currentPageLabel ) {
+        $(this).addClass('active');
+      }
+      else {
+        if ($(this).hasClass('active') ) {
+          $(this).removeClass('active');
+        }
+        if ($(this).hasClass('disabled') ) {
+          $(this).removeClass('disabled');
+        }
+      }
+    });
+
+    // Disabling previous or next page button, if it is necessary
+    if (currentPageId === 0) {
+      $("#pagination-boxes").children().first().addClass('disabled');
+    }
+    if (currentPageId === (this.get('totalPages') - 1) ) {
+      $("#pagination-boxes").children().last().addClass('disabled');
+    }
+  }.observes('currentPage'),
+
+  paginateEvents: function() {
+    var skip = this.get('currentPage') * this.get('limit');
+
+    var curPageEvents = this.get('model').slice(skip, skip + this.get('limit'));
+
+    this.set('paginatedEvents', curPageEvents);
+  }.observes('currentPage'),
+
+  previousPage: function() {
+    var currentPage = parseInt(this.get('currentPage'), 10);
+
+    if (currentPage > 0)
+      this.set('currentPage', currentPage - 1);
+  },
+
+  nextPage: function() {
+    var currentPage = parseInt(this.get('currentPage'), 10);
+
+    if (currentPage < (this.get('totalPages') - 1) )
+      this.set('currentPage', currentPage + 1);
+  },
+
 /*
   sortFunction: function(x, y) {
     if (x == y)
