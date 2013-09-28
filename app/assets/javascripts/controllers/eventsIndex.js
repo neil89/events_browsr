@@ -7,14 +7,48 @@ App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListCo
 
   pagesIndex: [],
 
-  currentPage: 0,
+  currentPage: -1,
 
   limit: 5,
 
   paginatedEvents: undefined,
 
   setupPagination: function() {
-    var totalPages = Math.ceil(this.get('model.length') / this.get('limit'));
+    this.set('todayEvents', []);
+    this.set('comingEvents', []);
+    var events = this.get('model');
+    var today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+    var flag = false;
+    var todayEvents = [];
+    var self = this;
+
+    events.toArray().forEach(function(ev) {
+      var date = ev.get('date');
+      var evDate = new Date(date.substring(6),
+                            parseInt(date.substring(3, 5), 10) - 1,
+                            date.substring(0, 2));
+
+      var days = Math.round((today - evDate) / 1000 / 60 / 60 / 24);
+
+      if (days === 0) {
+        todayEvents.push(ev);
+      }
+      else {
+        var arr = self.get('comingEvents');
+        arr.push(ev);
+        self.set('comingEvents', arr);
+      }
+
+    });
+
+    this.set('todayEvents', todayEvents);
+
+
+    var totalPages = Math.ceil(this.get('comingEvents.length') / this.get('limit'));
 
     this.set('totalPages', totalPages);
 
@@ -39,8 +73,8 @@ App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListCo
     var currentPageLabel = this.get('pagesIndex')[this.get('currentPage')].label;
 
     // Setting class 'active' to current page
-    $("#pagination-boxes").children().each(function(idx) {
-      if( $(this).text() == currentPageLabel ) {
+    $("#pagination-boxes").children("li").each(function(idx) {
+      if( $(this).text().trim() == currentPageLabel ) {
         $(this).addClass('active');
       }
       else {
@@ -65,7 +99,7 @@ App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListCo
   paginateEvents: function() {
     var skip = this.get('currentPage') * this.get('limit');
 
-    var curPageEvents = this.get('model').slice(skip, skip + this.get('limit'));
+    var curPageEvents = this.get('comingEvents').slice(skip, skip + this.get('limit'));
 
     this.set('paginatedEvents', curPageEvents);
   }.observes('currentPage'),
@@ -103,38 +137,7 @@ App.EventsIndexController = Ember.ArrayController.extend( {//App.AppEventsListCo
     $("#more-info-event").modal("show");
   },
 
-  getTodayEvents: function() {
-    var events = this.get('model');
-    var today = new Date();
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
-    var flag = false;
-    var todayEvents = [];
-    var self = this;
-
-    events.toArray().forEach(function(ev) {
-      var date = ev.get('date');
-      var evDate = new Date(date.substring(6),
-                            parseInt(date.substring(3, 5), 10) - 1,
-                            date.substring(0, 2));
-
-      var days = Math.round((today - evDate) / 1000 / 60 / 60 / 24);
-
-      if (days === 0) {
-        todayEvents.push(ev);
-      }
-      else {
-        var arr = self.get('comingEvents');
-        arr.push(ev);
-        self.set('comingEvents', arr);
-      }
-
-    });
-
-    return todayEvents;
-  }.property('model'),
+  todayEvents: [],
 
   comingEvents: [],
 

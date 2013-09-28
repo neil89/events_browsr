@@ -21,8 +21,8 @@
 
 
 <section class="events-list-section">
-  {{#if getTodayEvents}}
-    {{#with getTodayEvents as list}}
+  {{#if todayEvents}}
+    {{#with todayEvents as list}}
       <h3>Eventos de hoy</h3>
       {{partial "eventsList"}}
     {{/with}}
@@ -42,7 +42,11 @@
   <ul id="pagination-boxes" class="pagination">
     <li {{action previousPage target="controller"}}><a href="#">&laquo;</a></li>
     {{#each p in pagesIndex}}
-      <li {{action changePage p.id target="controller"}}><a href="#">{{p.label}}</a></li>
+      {{#view App.PaginationBox}}
+        <a {{action changePage p.id target="controller"}}>
+          {{p.label}}
+        </a>
+      {{/view}}
     {{/each}}
     <li {{action nextPage target="controller"}}><a href="#">&raquo;</a></li>
   </ul>
