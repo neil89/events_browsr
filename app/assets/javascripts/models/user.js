@@ -15,8 +15,8 @@ App.User = DS.Model.extend( {
   events: DS.hasMany('App.Event',
                      { inverse: 'user' },
                      { embedded: 'load' }),
-  attendances: DS.hasMany('App.Attender',
-                          { inverse: 'attendanceOf' },
+  attendances: DS.hasMany('App.Event',
+                          { inverse: 'attendings' },
                           { embedded: 'load' }),
 
   fullName: function() {

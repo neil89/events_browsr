@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     #@limit = params[:limit].to_i
     #@skipping = (params[:page].to_i - 1) * @limit
 
-    #e = params[:user_id].blank? ? Event.all.order_by(formatStringDate: "desc") : Event.where(user_id: params[:user_id])
+    #e = params[:user_id].blank? ? Event.all.order_by(:date.to_time) : Event.where(user_id: params[:user_id])
     #e = params[:user_id].blank? ? Event.all.skip(@skipping).limit(@limit) : Event.where(user_id: params[:user_id])
     e = params[:user_id].blank? ? Event.all : Event.where(user_id: params[:user_id])
 
@@ -49,5 +49,31 @@ logger.debug "  params[:user_id] -> #{params[:user_id]}"
       respond_with e, :api_template => :general_event, status: :unprocessable_entity
     end
   end
+
+  #PUT /events/1.json
+  def update
+    e = Event.find(params[:id])
+
+    logger.debug "**"
+    logger.debug "Event: #{e.to_s}"
+    logger.debug "Event.id: #{e.id.to_s}"
+    logger.debug "Event.attendings: #{params[:attendings]}"
+
+    u = User.find(params[:attendings])
+
+    if params[:attendings]
+    logger.debug "Dentro del if"
+    logger.debug "  u.name: #{u.name.to_s}"
+      e.attendings << u
+    logger.debug "  Event: #{e.attendings.first.id.to_s}"
+    logger.debug "Se va a guardar!"
+      e.save
+    logger.debug "GUARDADO"
+      respond_with e, api_template: :general_event, status: :no_content
+    # else
+    #   respond_with e, api_template: :general_event, root: :errors, status: :unprocessable_entity
+    end
+  end
+
 
 end

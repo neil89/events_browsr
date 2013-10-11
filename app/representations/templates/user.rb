@@ -11,7 +11,7 @@ module Templates::User
 
     api_accessible :general_user_with_events, :extend => :general_user do |response|
       response.add :event_ids
-      #response.add :attendances
+      response.add :attendance_ids
     end
 
     # api_accessible :extended_user, :extend => :general_user_with_events do |response|

@@ -9,4 +9,5 @@ class UserSerializer < ActiveModel::Serializer
              :password_confirmation
              
   has_many :events, embed: :ids
+  has_many :attendance, embed: :ids
 end             

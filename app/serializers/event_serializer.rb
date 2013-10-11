@@ -6,4 +6,5 @@ class EventSerializer < ActiveModel::Serializer
              :description
 
   has_one :user, embed: :id
+  has_many :attendings, embed: :ids
 end             

@@ -15,7 +15,7 @@ class User
 
   acts_as_api
   include Templates::User
-  include Templates::Attender
+  # include Templates::Attender
 
   validates :name, presence: { message: "blank" }, length: { minimum: 3, maximum: 20, message: "length" }
 
@@ -41,8 +41,8 @@ class User
 
   has_many :events
 
-  has_many :attendances, class_name: "Attender", inverse_of: :attendanceOf
+  # has_many :attendances, class_name: "Attender", inverse_of: :attendanceOf
 
-  # has_and_belongs_to_many :attendings, class_name: "Event" , inverse_of: :attendances
+  has_and_belongs_to_many :attendances, class_name: "Event" , inverse_of: :attendings
 end
 
