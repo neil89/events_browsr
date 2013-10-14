@@ -1,6 +1,6 @@
 App.EventsIndexRoute = App.AuthenticatedRoute.extend( {
   model: function() {
-    return App.Event.find();
+    return this.store.find('event');
   },
 
   setupController: function(controller, model) {

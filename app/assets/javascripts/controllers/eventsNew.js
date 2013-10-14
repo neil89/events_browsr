@@ -52,14 +52,24 @@ App.EventsNewController = Ember.ObjectController.extend( {
     this.set('place', "");
     this.set('description', "");
 
-    this.transaction = this.get('store').transaction();
+    var emptyEvent = {
+      title: this.get('title'),
+      date: this.get('date'),
+      place: this.get('place'),
+      description: this.get('description')
+    };
 
-    var dummyEvent = this.transaction.createRecord
-    (
-      App.Event
-    );
+    //this.transaction = this.get('store').transaction();
 
-    this.set('model', dummyEvent);
+    //var dummyEvent = this.store.createRecord('event', emptyEvent);
+
+    this.set('model', emptyEvent);
+
+    /****************
+    var event = this.store.createRecord('comment', comment);
+    comment.save();
+    this.set('comment', '');
+    ****************/
   },
 
   createEvent: function() {
@@ -89,31 +99,57 @@ console.log("CAPTURADO Titulo: " + eTitle +
   ", Lugar: " + ePlace +
   ", Descripción: " + eDescription);
 
-    this.transaction = this.get('store').transaction();
 
-    var newEvent = this.transaction.createRecord
-    (
-      App.Event,
-      {
-        title: eTitle,
-        date: eDate,
-        place: ePlace,
-        description: eDescription,
-        user: App.User.find(userId)
-      }
-    );
-
-    this.set('model', newEvent);
+    var newEvent = {
+      title: eTitle,
+      date: eDate,
+      place: ePlace,
+      description: eDescription,
+      user: App.User.find(userId)
+    };
 
     var self = this;
 
-    newEvent.one('didCreate', function() {
-      Ember.run.next(function() {
-        self.send('ownEventsRedirect');
-      });
+    var createEvent = this.store.createRecord('event', newEvent);
+    //createEvent.save();
+    
+    createEvent.save().then(function() {
+      self.send('ownEventsRedirect');
     });
 
-    this.transaction.commit();
-    this.transaction = null;
+    //this.set('newEvent', '');
+
+
+
+
+    /////////////////
+    // OLD VERSION //
+    /////////////////
+    // this.transaction = this.get('store').transaction();
+
+    // var newEvent = this.transaction.createRecord
+    // (
+    //   App.Event,
+    //   {
+    //     title: eTitle,
+    //     date: eDate,
+    //     place: ePlace,
+    //     description: eDescription,
+    //     user: App.User.find(userId)
+    //   }
+    // );
+
+    // this.set('model', newEvent);
+
+    // var self = this;
+
+    // newEvent.one('didCreate', function() {
+    //   Ember.run.next(function() {
+    //     self.send('ownEventsRedirect');
+    //   });
+    // });
+
+    // this.transaction.commit();
+    // this.transaction = null;
   }
 });

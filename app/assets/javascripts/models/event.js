@@ -9,10 +9,10 @@ App.Event = DS.Model.extend( {
   date: DS.attr('string'),
   place: DS.attr('string'),
   description: DS.attr('string'),
-  user: DS.belongsTo('App.User',
+  user: DS.belongsTo('user',
                      { inverse: 'events' },
                      { embedded: 'load' }),
-  attendings: DS.hasMany('App.User',
+  attendings: DS.hasMany('user',
                           { inverse: 'attendances' },
                           { embedded: 'load' }),
 

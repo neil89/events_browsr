@@ -12,10 +12,10 @@ App.User = DS.Model.extend( {
   age: DS.attr('number'),
   password: DS.attr('string'),
   password_confirmation: DS.attr('string'),
-  events: DS.hasMany('App.Event',
+  events: DS.hasMany('event',
                      { inverse: 'user' },
                      { embedded: 'load' }),
-  attendances: DS.hasMany('App.Event',
+  attendances: DS.hasMany('event',
                           { inverse: 'attendings' },
                           { embedded: 'load' }),
 
